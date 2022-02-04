@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지.
+  		#{} 구문은 get()/set()으로 사용돼. 
+  		https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 여기 읽어보면 문법이 나와있어. -->
+  
+  <mapper namespace="com.luvit.mapper.Store_reviewMapper">
+  
+	<select id="getTime" resultType="string">
+       select now()
+     </select>
+     
+     <!-- 상품 후기 목록 -->
+     <select id="store_review_List" resultType="com.luvit.domain.Store_reviewVO">
+		 select * from store_review where s_r_pno=#{s_r_pno} order by s_r_bno desc 
+    </select>
+    
+    
+     <!-- 상품 후기 등록 -->
+     <insert id="insertReview">
+      insert into store_review(s_r_id,s_r_nickname,s_r_subject,s_r_contents,
+     	 					s_r_file,s_r_thumbnail,s_r_date,s_r_hit,s_r_like_count,s_r_pno,s_r_cate,s_r_rating) 
+      values (#{s_r_id},#{s_r_nickname},#{s_r_subject},#{s_r_contents},
+     						#{s_r_file},#{s_r_thumbnail},now(),0,0,#{s_r_pno},#{s_r_cate},#{s_r_rating})
+     </insert>
+     
+     <!-- 상품 후기 수정 -->
+     <update id="updateReview" >
+      update store_review set 
+      s_r_subject=#{s_r_subject}, s_r_contents=#{s_r_contents}, s_r_file = #{s_r_file}, s_r_thumbnail = #{s_r_thumbnail},s_r_cate = #{s_r_cate} 
+      where s_r_bno=#{s_r_bno}
+        
+     </update>
+     
+     <!-- 상품 후기 정보 조회 -->
+   	<select id="getStore_review" parameterType="int" resultType="com.luvit.domain.Store_reviewVO">
+       select * from store_review where s_r_bno=#{s_r_bno}
+    </select>
+    
+  	<!-- 상품 후기 삭제 -->
+  	<delete id="ReviewDelete" parameterType="int">
+        delete from store_review where s_r_bno = #{s_r_bno}
+    </delete>
+    
+    <!-- 후기 갯수 -->
+    <select id="count" resultType="int">
+       select count(s_r_bno) from store_review 
+    </select> 
+    
+    <!-- 후기 조회수 증가 -->
+  	<update id="storeReviewHit" parameterType="int">
+  		update store_review 
+  		set s_r_hit = s_r_hit+1 
+  		where s_r_bno = #{s_r_bno}
+  	</update>
+  	
+  	<!-- 전체 상품 후기 목록 -->
+      <select id="listAll2" parameterType="hashMap" resultType="com.luvit.domain.Store_reviewVO">
+		select * from store_review 
+ 		order by s_r_bno desc 
+		limit #{displayPost}, #{postNum}
+    </select>
+    
+    <!-- 후기 목록 + 페이징 -->
+	<select id="listPage" parameterType="hashMap" resultType="com.luvit.domain.Store_reviewVO">
+		  select 
+		   * 
+		  from	
+		  store_review 
+		  where 
+		   s_r_pno=#{s_r_pno} 
+		 order by s_r_bno desc  
+		 limit #{displayPost}, #{postNum}
+	</select> 
+	
+	<!-- 상품 이름 조회 -->
+	<select id="productName" parameterType="int" resultType="com.luvit.domain.StoreVO">
+	SELECT store.s_product FROM store_review JOIN store ON (store_review.s_r_pno = store.s_pno)
+	WHERE s_r_pno = #{s_r_pno}  group by s_r_pno
+	</select> 
+	
+	
+	 <!-- 카테고리 별 상품 후기 목록 -->
+      <select id="store_review_cate" parameterType="hashMap" resultType="com.luvit.domain.Store_reviewVO">
+		select * from store_review  where s_r_cate=#{s_r_cate} 
+ 		order by s_r_bno desc 
+		 limit #{displayPost}, #{postNum} 
+    </select>
+    
+    <!-- 동일 게시글 추천 여부 검색 --> 
+	<select id="srl_check" parameterType="map" resultType="int">
+		select count(*) from store_review_like where s_r_l_bno = #{s_r_bno} and s_r_l_id = #{id}
+	</select>
+	
+	<!-- 게시글 추천 -->
+	<insert id="srl_update" parameterType="map">
+		insert into store_review_like (s_r_l_bno,s_r_l_id) values(#{s_r_bno}, #{id})   <!-- #{id}로 바꿔야 하는데 id가 없는 경우도 insert문 걸려서 오류 생김
+																								review 페이지에서 if id<> null 일때만 insert문 타게 해야 함 -->
+	</insert>
+	
+	<!-- 게시글 추천 취소 -->
+	<delete id="srl_delete" parameterType="map">
+		delete from store_review_like where s_r_l_bno = #{s_r_bno} and s_r_l_id = #{id}
+	</delete>
+	
+	<!-- 게시글 추천수 -->
+	<select id="srl_count" parameterType="int" resultType="int">
+		select count(*) from store_review_like where s_r_l_bno = #{s_r_bno}
+	</select>
+    
+  </mapper>

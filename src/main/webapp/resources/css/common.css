@@ -1,0 +1,296 @@
+@CHARSET "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Roboto:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;1,200;1,300;1,400;1,500;1,700;1,800&display=swap');
+/* 전 페이지 공통 적용되는 사항 */ 
+
+* {margin:0; padding:0; border:0 none transparent; box-sizing:border-box;}
+:before, :after {box-sizing:border-box;}
+html, body, pre {font-family:"Noto Sans KR", sans-serif; font-size:14px; line-height:22px; color:#666; font-weight:400; letter-spacing:-0.03em; -webkit-font-smoothing: antialiased; /*-webkit-text-size-adjust:100%;*/}
+form, fieldset, p, figure {word-break:normal; word-wrap:break-word; -webkit-font-smoothing: antialiased;}
+html, body, div, span, applet, object, iframe, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, article, aside, hgroup, header, footer, figure, figcaption, nav, section { 
+	font-family:"Noto Sans KR", sans-serif; font-weight:400; letter-spacing:-0.03em; vertical-align:baseline; background:transparent; -webkit-font-smoothing: antialiased;}
+article, aside, hgroup, header, footer, figure, figcaption, nav, section { display: block; }
+body {padding:0;margin:0;box-sizing:border-box; font-family: 'Noto Sans', sans-serif; font-size:14px;color:#666; -webkit-font-smoothing: antialiased;}
+ol, ul { list-style:none; }
+blockquote, q { quotes:none; }
+h1, h2, h3, h4, h5, h6, strong, th{font-family:"Noto Sans KR", sans-serif; font-weight:700; color:#666;}
+blockquote:before, blockquote:after,q:before, q:after { content:''; }
+table { border-collapse:collapse; border-spacing:0; table-layout:fixed; width:100%;}
+button { margin:0; padding:0; border:0; font:inherit; color:inherit; background:transparent; overflow:visible; cursor:pointer; line-height:1; }
+a:link, a:visited, a:hover, a,active, a:focus { text-decoration:none; cursor:pointer; color:rgba(0,0,0,0.65);}
+legend, caption { display:none; }
+textarea { resize:vertical; font:inherit; overflow-y:auto; border:1px solid #ddd;}
+input, select { color:inherit; font:inherit; vertical-align: middle; box-sizing:border-box; font-family:'Noto Sans', sans-serif}
+address, i { font-style:normal; }
+table { border-collapse:collapse; table-layout:fixed; }
+img, select, input, button { vertical-align:middle; }
+em { font-style:normal; }
+input[type=text] {font-size:14px; border:1px solid #ddd; padding:5px 7px; margin:5px 0;}
+input[type=button], button[type=submit], input[type=submit]{
+	width:120px; height:38px; border: 0; border-radius:3px; color:#fff; margin:5px 0; cursor:pointer;
+	background: #FC5C7D;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */	
+} 
+input[type=reset]{width:120px; height:32px; background-color:#ccc; color:#fff; margin:5px 0;} 
+.mgt3{margin-top:3px;}
+.bgcolor{background: #FC5C7D;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */}
+/* placeholder */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #989898;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #989898;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: rgba(152,152,152,0.8);
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #989898;
+}
+
+input[type=text]::-ms-clear{
+	display: none;
+}
+
+.por { position:relative;}
+
+.tl {text-align:left !important;}
+.tr {text-align:right !important;}
+.tc {text-align:center !important;}
+
+.fl { float:left !important;}
+.fr { float:right !important;}
+
+.clear { clear:both;}
+
+.vt { vertical-align:top !important;}
+.vm { vertical-align:middle !important;}
+.vtb { vertical-align:text-bottom !important;}
+
+.dpi { display:inline;}
+.dpb { display:block;}
+.dpib { display:inline-block;}
+.dpn { display:none;}
+
+.clearFixed:after { content:''; display:block; clear:both;}
+
+.ellipsis { overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+.blind { overflow:hidden; position:absolute; top:0; left:0; width:0; height:0; font-size:0;}
+
+
+.fw450 {font-weight:450;}
+
+.pointColor {color:#9c836a !important;}
+.pointColor4 {color:#666 !important;}
+.colorRed {color:#dc5b51 !important;}
+.cateSelect1{font-weight:600; color:darkkhaki;}
+.cateSelect2{font-weight:600; color:goldenrod;}
+.cateSelect3{font-weight:600; color:cadetblue;}
+.cateSelect4{font-weight:600; color:cadetblue;}
+
+html body {word-break:break-all;}
+html[lang="ko"] body, html[lang="en"] body {word-break:keep-all;}
+/* html[lang="ja"] body {font-family: 'Noto Sans JP','Noto Sans', sans-serif;} */
+
+
+/* 헤더 아래 뷰 시작되는 영역 */ 
+#ViewContainer{margin:60px 0 100px 0; display:block; width:100%;}
+
+
+
+/* HEADER */ 
+#headerBox{width:100%; position:relative; border-bottom:1px solid #eee;}
+#headerBox #topMenu .logoNav img{width:100%;}
+#mainMenu{width:1200px; margin:0 auto;}
+#mainMenu ul{margin:0 auto; text-align:center;}
+#mainMenu ul li{float:left; padding:18px 14px; font-size:15px;}
+#mainMenu ul li a{font-weight:600;}
+#mainMenu ul li a:hover{color:#9c836a;}
+#topMenu{width:100%; position:fixed; height:60px; z-index:100; background-color:#fff; border-bottom:1px solid #eee; transition:top 0.5s ease-in-out;}
+.nav-up {
+    top: -60px; /* 헤더 높이와 같아야함 */
+}
+
+/* 헤더 풀다운 슬라이딩 메뉴 */
+#sliding_menu
+{
+display:none;
+width:100%; margin: 0 auto;
+position:absolute; left:0; top:60px; 
+opacity:1; 
+background: rgba(248,248,248);
+border-bottom:1px solid #eee;
+padding:10px 0 30px 0; margin-right:5px; z-index:9999; 
+}
+#sliding_menu .section{
+	
+	width:1200px; margin:0 auto;
+	
+}
+
+#sliding_menu ul {
+position:relative;
+width:85px;
+float:left;
+}
+#sliding_menu ul li{padding:4px 0 2px 0; margin-left:15px;}
+#sliding_menu ul li a{font-weight:400; font-size:14px;}
+
+
+
+.logoNav{position:absolute; top:16px; left:50%; text-align:center; z-index:15; width:80px; font-size:20px; transform:translateX(-50%);}
+
+/* .mainDropdown{transform:matrix(1,0,0,1,0,20); opacity:0; background-color:#fff; z-index:1000; text-align:left;} */
+
+.leftSide{float:left;}
+.rightSide{float:right;}
+.rightSide li a{float:right; font-size:12px; font-weight:400 !important;}
+
+#mainMenu li .mainDropdown {
+  display: none;
+  position: absolute;
+  background-color:#fff; 
+  width:150px;
+  border:1px solid #eee;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  clear:both;
+  padding:10px;
+  font-size:15px;
+  opacity:1;
+  transition: all 2s;
+  transform:matrix(1,0,0,1,0,20);
+  
+  animation-name: bounce; 
+  animation-duration: 1s; /*2초동안*/
+  animation-iteration-count:0; /*1회 반복*/
+  animation-direction: normal; /*애니메이션종료후 진행방향*/
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both; /*시작프레임에 설정한 스타일적용하고 대기*/
+  animation-delay: 0s; /*0초뒤에 애니메이션 동작*/
+ 
+}
+
+@keyframes bounce{
+  0%{transform:translate(0,0)}
+  50%{transform:translate(0, 20px)}
+  100%{transform:translate(0, 20px)}
+  
+}
+@-webkit-keyframes bounce{
+   0%{transform:translate(0,0)}
+  50%{transform:translate(0, 20px)}
+  100%{transform:translate(0, 20px)}
+}
+
+
+#mainMenu li .mainDropdown li{padding:10px;}
+
+.mainDropdown a {
+  color:#666;
+  text-decoration: none;
+  font-size:15px;
+  font-weight:400 !important;
+}
+
+#mainMenu li:hover .mainDropdown {display: block; transition: all 1s; }
+/* #mainMenu li:hover .mainDropdown {display: block; opacity:0.5; transition: all 1s; } 
+#mainMenu li:hover .mainDropdown:hover{display: block; opacity:1; transform:matrix(1,0,0,1,0,20); }*/
+
+.gold {color:#9c836a;}
+
+/* 검색결과가 비었을 때 */
+.emptyMsg{text-align:center; padding:60px 0; background:#f8f8f8; border-radius:7px; margin-top:40px;}
+.emptyMsg h4{margin-top:20px; font-size:20px;}
+.emptyMsg input{width:170px; margin-top:15px;}
+/* 레시피 셀렉트 모달창 */
+.replyModal { position:relative; z-index:100; display:none;}
+.modalBackground { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0, 0, 0, 0.8); z-index:-1; }
+.modalContent { position:fixed; top:15%; left:calc(50% - 400px); width:800px; height:535px; padding:30px 30px; color:#fff; border-radius:10px;
+	background: #FC5C7D;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+.modalContent h3{text-align:left; color:#fff; font-size:32px; line-height:130%; width:170px; float:left;}
+.modalContent h4{text-align:right; color:#fff; font-size:14px; font-weight:300; margin-top:3px; letter-spacing:3px;}
+.modalContent hr{background-color:#fff; height:4px;}
+.modalContent .boldLineU{float:left; width:100%; }
+.modalContent .boldLineD{width:100%;}
+.modalContent .boldLineU::after{content:""; display:table; clear:both;}
+.modalContent .contentBox{width:170px; height:100%; float:left; margin-top:-10px;}
+.modalContent .contentBox p{display:inline-block;}
+.modalContent .selectGroup {min-height:68px;}
+.modalContent .selectGroup button{padding:6px 10px; border:1px solid #fff; margin:0 5px 10px 0; border-radius:5px; background-color:rgba(255,255,255,0.1); transition:0.5s; cursor:pointer;}
+.modalContent .selectMaterial{width:100%; min-height:128px; max-height:148px; overflow: hidden;}
+.modalContent button[type=submit]{width:100%; background:#fff; cursor:pointer; opacity:0.7; transition:0.3s; margin-top:10px;}
+.modalContent button[type=submit]:hover{opacity:1; transition:0.3s;}
+.modalContent .buttonText{font-size:14px; font-weight:700;
+	 background: linear-gradient(45deg, #6A82FB, #FC5C7D);
+ 	 -webkit-background-clip: text;
+	 -webkit-text-fill-color: transparent;
+}
+#selectArea h4{color:#fff; font-weight:500; text-align:left; margin:15px 0 7px 0; font-size:16px;}
+.modalContent .selectBig ul li{float:left; padding:3px 10px; border:1px solid #fff; margin:0 5px 0 0; border-radius:5px; background-color:rgba(255,255,255,0.1); transition:0.5s; cursor:pointer;}
+.modalContent .selectBig ul li:hover{background-color:#fff; color:#FC5C7D;}
+.modalContent .selectBig{text-align:center; border-bottom:1px solid rgba(255,255,255,0.6); padding:0 0 10px 0;}
+#selectArea{float:left; width:77%;}
+.mgt10{margin-top:10px;}
+.modalContent .selectMaterial button{padding:6px 10px; border:1px solid #fff; margin:0 5px 7px 0; border-radius:5px; color:#FC5C7D; background:#fff;} 
+.arrowArea{text-align:center; border-bottom:1px solid rgba(255,255,255,0.6); padding:0 0 10px 0;}
+.modalContent .selectMaterial{border-bottom:1px solid rgba(255,255,255,0.6); padding:0 0 10px 0;}
+/* FOOTER */
+#foot {position:relative; background:#14151d;}
+#foot nav .gnbFoot{float:left;}
+#foot nav, #foot > section, #foot div menu.gnbFoot, #foot > div ul {width:1200px; margin:0 auto; display:table;}
+#foot nav menu.gnbFoot > li, #foot section > *, #foot > div ul li {vertical-align:top; display:table-cell;}
+#foot nav {padding:0 0 40px 0; display:block;}
+#foot nav menu.gnbFoot > li:not(:last-child) {width:180px;}
+#foot nav menu.gnbFoot > li:before {width:1px; height:30px; margin-bottom:54px; background:rgba(255,255,255,0.30); display:block; content:"";}
+#foot nav h3 {margin-bottom:14px; font-size:14px; color:#ccc; font-weight:500; letter-spacing:0;}
+#foot nav a {color:#999; font-weight:500;}
+#foot nav menu menu li {margin-top:6px;}
+#foot nav .about {margin:48px 0;}
+#foot nav .about > li {margin-right:16px; display:inline-block;}
+#foot nav .about > li:first-child a {color:#bbb; font-weight:700;}
+#foot section h1 {position:relative; width:400px; text-align:center;}
+#foot section h1:after {position:absolute; left:50%; bottom:0; width:300px; height:9px; margin-left:-150px; background:rgba(255,255,255,0.20); display:block; content:"";}
+#foot address {padding:0 0 76px 150px; font-size:12px; color:#555;}
+#foot address:before {width:1px; height:30px; margin-bottom:54px; background:rgba(255,255,255,0.30); display:block; content:"";}
+#foot address aside {float:right; padding-top:2px;}
+#foot address aside figure {display:table;}
+#foot address aside figure > * {vertical-align:middle; display:table-cell;}
+#foot address aside figure:not(:first-of-type) {margin-top:18px;}
+#foot address aside figure span {width:43px; padding-right:10px; text-align:center;}
+#foot address aside figure figcaption {font-size:11px; line-height:15px; color:rgba(255,255,255,0.60); text-align:left;}
+#foot address aside figure figcaption strong {font-weight:700;}
+#foot address aside figure:first-of-type span img {width:33px;}
+#foot address aside figure:nth-of-type(2) span img {width:24px;}
+#foot address dl.contact {height:auto; margin-bottom:23px; color:#999; overflow:hidden;}
+#foot address dl.contact > dt {clear:both; float:left; margin-right:10px; font-weight:700;}
+#foot address dl.contact > dd {font-size:18px;}
+#foot address dl.contact > dt:not(:first-of-type), #foot address dl.contact > dd:not(:first-of-type) {margin-top:4px;}
+#foot address dl.contact a {color:#999;}
+#foot address dl.addr {clear:both; height:auto; overflow:hidden;}
+#foot address dl.addr dt, #foot section address dl.addr dd:not(:nth-of-type(2)):not(:nth-of-type(3)) {float:left; display:block;}
+#foot address dl.addr dt:not(:nth-of-type(5)) {clear:both;}
+#foot address dl.addr dd:not(:first-of-type) {padding-left:6px;}
+#foot address dl.addr dd:nth-of-type(2):before, #foot address dl.addr dd:nth-of-type(3):before, #foot address dl.addr dt:nth-of-type(5):before {width:1px; height:10px; margin:0 10px; background:#5b5c61; vertical-align:-1px; display:inline-block; content:"";}
+#foot address p {margin-top:18px;}
+#foot div.link {float:right; margin:-42px -22px;}
+#foot div.link .select2 {width:165px !important;}
+#foot > div {border-top:1px solid #2c2d34; border-bottom:1px solid #2a2b32;}
+#foot > div ul li {height:149px; vertical-align:middle; opacity:0.5;}
+#foot > div ul li:not(:last-child) {padding-right:43px;}
+#foot > div ul li:last-child {text-align:right;}
+
+#quick {position:fixed; bottom:46px; right:40px; width:60px; border:0 none !important; z-index:100;}
+#quick button {width:62px; height:61px; background:#333; display:block; color:#fff; transition:.8s;}
+#quick button:hover {background-position:0 0; background:#fff; color:#333; border:1px solid #aaa;}
+#quick.off {position:absolute; top:-110px; bottom:auto;}
+
+
+
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지.
+  		#{} 구문은 get()/set()으로 사용돼. 
+  		https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 여기 읽어보면 문법이 나와있어. -->
+  
+  <mapper namespace="com.luvit.mapper.Recipe_review_commentMapper">
+	
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+
+	<select id="cntComment" resultType="int">
+        select
+            COUNT(*)
+        from recipe_review_comment
+    </select>
+    
+    <select id="listComment" resultType="com.luvit.domain.Recipe_review_commentVO">
+    
+    	select
+    		*
+    	from recipe_review_comment
+    	
+     	where r_r_c_bno = #{r_r_c_bno}
+    	
+    	order by r_r_c_cno desc
+    
+    </select>
+
+
+	
+	<insert id="inComment" parameterType="com.luvit.domain.Recipe_review_commentVO">
+
+		insert into recipe_review_comment(r_r_c_cno, r_r_c_bno, r_r_c_content, r_r_c_nickname)
+
+		values (#{r_r_c_cno}, #{r_r_c_bno}, #{r_r_c_content}, #{r_r_c_nickname})
+		
+	</insert>
+
+	
+
+	<update id="upComment" parameterType="com.luvit.domain.Recipe_review_commentVO">
+
+		update recipe_review_comment set
+
+			r_r_c_content = #{r_r_c_content}
+
+		where
+
+			r_r_c_cno = #{r_r_c_cno}
+
+	</update>
+
+	
+
+	<delete id="delComment" parameterType="int">
+
+		delete from recipe_review_comment
+
+		where
+
+			r_r_c_cno = #{r_r_c_cno}
+
+	</delete>
+	
+  </mapper>

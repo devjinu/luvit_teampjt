@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지. #{} 구문은 get()/set()으로 사용돼. https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 
+	여기 읽어보면 문법이 나와있어. -->
+
+<mapper namespace="com.luvit.mapper.TipMapper">
+
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+	
+	<!-- 글번호 계산 -->
+	
+	<select id="cntBno">
+	select
+	 max(t_bno)
+	from
+	 tip
+	</select>
+
+	<!-- 게시글 작성하기 -->
+    <insert id="insertTip">
+    
+        insert into tip (t_nickname,t_subject,t_content,t_file,t_thumbnail,t_hit,t_like_count,t_id,t_avg) 
+        values(#{t_nickname},#{t_subject},#{t_content},#{t_file},#{t_thumbnail},#{t_hit},#{t_like_count},#{t_id},#{t_avg})
+    </insert>
+
+	<!-- 게시판 리스트보기 -->
+    <select id="listTip" resultType="com.luvit.domain.TipVO">
+    <![CDATA[
+    
+        select * from tip 
+        order by t_bno DESC
+    ]]>
+    </select>
+    
+     <!-- 게시판 상세보기 -->
+    <select id="readTip" resultType="com.luvit.domain.TipVO">
+            select * from tip where t_bno = #{t_bno}
+    </select>
+     
+    <!-- 게시판 삭제하기 -->
+    <delete id="deleteTip">
+        delete from
+        	tip
+        where
+        	t_bno = #{t_bno}
+    </delete>
+    
+    <!-- 게시판 수정하기 -->
+    <update id="updateTip">
+        update tip
+        set
+         t_subject=#{t_subject},
+         t_content = #{t_content},
+         t_file = #{t_file},
+         t_thumbnail = #{t_thumbnail}
+        where t_bno = #{t_bno}
+        
+        <!-- 상품 수정 -->
+
+    </update>
+    
+    <!-- 게시물 총 갯수 -->
+    <select id="count" resultType="int">
+    	select count(t_bno) from tip
+    </select>
+    
+    <!-- 게시물 목록 + 페이징
+    <select id="listPage" parameterType="hashMap"
+    resultType="com.luvit.domain.TipVO">
+   	 select * from tip 
+        order by t_bno DESC
+       limit #{displayPost}, #{postNum}
+    </select> -->
+    
+    <!-- 게시판 조회수 -->
+    <update id="tipHit" parameterType="int">
+    	update tip SET
+    	t_hit = t_hit+1
+    	where t_bno = #{t_bno}
+    </update>
+    
+	<!-- 팁 목록 + 페이징 + 검색 -->
+	<select id="listPageSearch" parameterType="hashMap" resultType="com.luvit.domain.TipVO">
+		select t_bno, t_subject, t_nickname, t_date, t_hit, t_thumbnail
+		from tip
+		<if test='searchType.equals("t_subject")'>
+			WHERE t_subject LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("t_content")'>
+			WHERE t_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("t_subject_content")'>
+			WHERE t_subject LIKE concat('%', #{keyword}, '%') 
+			or t_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("t_nickname")'>
+			WHERE t_nickname LIKE concat('%', #{keyword}, '%')
+		</if>
+		order by t_bno desc
+			limit #{displayPost}, #{postNum}
+	</select>
+	<!-- 팁 목록 + 페이징 + 검색 -->
+	
+	<!-- 팁 총 수 + 검색 적용 -->
+	<select id="searchCount" parameterType="hashMap" resultType="int">
+		select count(t_bno) from tip  
+		<if test='searchType.equals("t_subject")'>
+			WHERE t_subject LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("t_content")'>
+			WHERE t_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("t_subject_content")'>
+			WHERE t_subject LIKE concat('%', #{keyword}, '%') 
+			or t_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("t_nickname")'>
+			WHERE t_nickname LIKE concat('%', #{keyword}, '%')
+		</if>
+	</select>
+	<!-- 팁 총 수 + 검색 적용 -->
+	
+	<update id="cntup" parameterType="int">
+	update tip set
+	t_like_count = #{t_like_count}+1
+	where t_bno = #{t_bno}	
+	</update>	
+
+	<update id="cntdown" parameterType="int">
+	update tip set
+	t_like_count = #{t_like_count}-1
+	where t_bno = #{t_bno}	
+	</update>
+	
+	<!-- 평균 평점 -->
+	<update id="avgRating" parameterType="int">
+	
+	update tip set 
+	t_avg = (select avg(t_c_rating) from tip_comment where t_c_bno = #{t_c_bno})
+	where t_bno = #{t_c_bno};
+	
+	</update>
+	<!-- 평균 평점 -->
+	
+	
+</mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

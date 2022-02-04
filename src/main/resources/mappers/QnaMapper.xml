@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지.
+  		#{} 구문은 get()/set()으로 사용돼. 
+  		https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 여기 읽어보면 문법이 나와있어. -->
+  
+  <mapper namespace="com.luvit.mapper.QnaMapper">
+	
+	<select id="getTime" resultType="string">
+      select now()
+    </select>
+    
+	<select id="getBoardBnoCount" resultType="int">
+      select max(q_bno) from qna
+    </select>
+    
+    <select id="getBoardNickName" resultType="String">
+      select q_nickname from qna where q_bno=#{q_bno}
+    </select>
+    
+    <!-- test -->
+    <select id="getBoardData" resultType="com.luvit.domain.QnaVO">
+      select q_nickname,q_subject,q_contents  from qna where q_bno=#{q_bno}
+    </select>
+    
+    <insert id="insertBoard">
+      insert into qna (q_bno,q_nickname,q_subject,q_contents,q_file,q_date,
+                       q_hit,q_secret,q_pw,q_re_ref,q_re_lev,q_re_seq)
+      values (#{q_bno},#{q_nickname},#{q_subject},#{q_contents},#{q_file},now(),
+              #{q_hit},#{q_secret},#{q_pw},#{q_re_ref},#{q_re_lev},#{q_re_seq})
+    </insert>
+  
+    <select id="getBoardCount" resultType="int">
+       select count(*) from qna
+    </select>
+    
+    <select id="getBoardList1" resultType="com.luvit.domain.QnaVO">
+       select * from qna order by q_re_ref desc 
+    </select>
+    
+    <select id="getBoardList" parameterType="hashMap" resultType="com.luvit.domain.QnaVO">
+       select * from qna order by q_re_ref desc, q_re_seq asc limit #{startRow}, #{pageSize} 
+    </select>
+ 
+    <select id="getBoardListCheck" parameterType="hashMap" resultType="com.luvit.domain.QnaVO">
+       select * from qna where q_secret =#{check} order by q_re_ref desc, q_re_seq asc limit #{startRow}, #{pageSize} 
+    </select>
+       
+    <update id="updateReadCount">
+       update qna set q_hit=q_hit+1 where q_bno=#{q_bno}
+    </update>
+    
+    <select id="getBoard" resultType="com.luvit.domain.QnaVO">
+       select * from qna where q_bno=#{q_bno}
+    </select>
+    
+    <select id="updateCheck" resultType="String">
+        select q_pw from qna where q_bno=#{q_bno}
+    </select>
+    
+    <update id="updateBoard">
+       update qna set q_nickname=#{q_nickname},q_subject=#{q_subject},q_contents=#{q_contents},
+                      q_secret=#{q_secret},q_date=now() where q_bno=#{q_bno}
+    </update>
+    
+    <select id="deleteCheck" resultType="String">
+        select q_pw from qna where q_bno=#{q_bno}
+    </select>
+    
+    <delete id="deleteBoard">
+        delete from qna where q_bno=#{q_bno}
+    </delete>
+    
+    <update id="reWriteUpdate" >
+        update qna set q_re_seq=q_re_seq+1
+        where q_re_ref=#{q_re_ref} and q_re_seq> #{q_re_seq}
+    </update>
+    
+    <insert id="reWrite">
+      insert into qna (q_bno,q_nickname,q_subject,q_contents,q_file,q_date,
+                       q_hit,q_secret,q_pw,q_re_ref,q_re_lev,q_re_seq)
+      values (#{q_bno},#{q_nickname},#{q_subject},#{q_contents},#{q_file},now(),
+              #{q_hit},#{q_secret},#{q_pw},#{q_re_ref},#{q_re_lev}+1,#{q_re_seq}+1)
+    </insert>
+    
+    
+  </mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

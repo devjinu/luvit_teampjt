@@ -1,0 +1,705 @@
+@charset "UTF-8";
+
+.img1{width:1200px; height:380px;overflow:hidden;}
+.img1 img{width:100%;}
+.img2{width:2000px; height:380px;overflow:hidden;}
+.img2 img{width:100%;height:180%;}
+
+/* recipe/recipeList 페이지 */
+
+#RecipeContainer{width:1200px; margin:120px auto;}
+#RecipeContainer h1{text-align:center; font-size:32px; color:#333;}
+#RecipeContainer .recipe_main_banner{position:relative; width:100%; background-color:#eee; height:320px; margin:30px 0; position:relative;}
+#RecipeContainer .recipe_main_banner_copybox{position:absolute; top:95px; right:100px; color:#fff;}
+#RecipeContainer .recipe_main_banner_copybox input[type="button"]{width:150px; height:35px; color:#fff; border-radius:0; margin-top:20px; background:transparent; border:1px solid #fff; transition:0.5s;}
+#RecipeContainer .recipe_main_banner_copybox input[type="button"]:hover{background:rgba(255,255,255,0.2); color:#fff;}
+#RecipeContainer .recipe_main_banner_copybox h2{color:#fff; margin-bottom:8px;}
+#RecipeContainer .recipe_main_banner_selectBox{position:absolute; top:128px; right:228px; color:#fff; text-align:center;}
+#RecipeContainer .recipe_main_banner_selectBox input[type="button"]{width:150px; height:35px; color:#fff; border-radius:0; margin-top:20px; background:transparent; border:1px solid #fff; transition:0.5s;}
+#RecipeContainer .recipe_main_banner_selectBox input[type="button"]:hover{background:rgba(255,255,255,0.2); color:#fff;}
+#RecipeContainer .recipe_main_banner_selectBox p{font-size:20px; line-height:135%;}
+#RecipeContainer #recipe_searchbox {width:54%; margin:0 auto;}
+#RecipeContainer #recipe_searchbox input{border:1px solid #ccc; padding:7px; margin:0 5px 0 0;}
+#RecipeContainer #recipe_searchbox input[type="submit"]{width:120px;}
+#RecipeContainer #recipe_searchbox input[type="text"]{width:400px;}
+#RecipeContainer #recipe_searchbox .tagBox{margin-top:10px;}
+#RecipeContainer #recipe_searchbox .tagBox span{margin-right:5px; color:#FC5C7D; font-weight:600;}
+#RecipeContainer #recipe_searchbox .tagBox button{padding:5px; background-color:#eee; transition:0.3s; border-radius:5px; margin-right:2px;}
+#RecipeContainer #recipe_searchbox .tagBox button:hover{background-color:#ddd;}
+#RecipeContainer #recipe_thumbnail{margin-top:50px;}
+#RecipeContainer #recipe_thumbnail h2{display:inline-block;}
+#RecipeContainer #recipe_thumbnail .create_btn{float:right; width:120px; height:36px; cursor:pointer; color:#fff; border-radius:3px;
+	background: #FC5C7D;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */	
+}
+#RecipeContainer #recipe_thumbnail .move_btn{float:right; width:165px; height:36px; cursor:pointer; color:#fff; border-radius:3px;
+	background: #FC5C7D;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */	
+}
+#RecipeContainer .thumbnail_box{width:32%; border-radius:5px; border:1px solid #eee; padding:20px; float:left; margin:30px 8px 10px 8px; transition:0.3s;}
+#RecipeContainer .thumbnail_box:hover{transition:0.3s;
+	box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+	 -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+	 -moz-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);}
+#RecipeContainer .thumbnail_box .thumnail_propic{width:50px; height:50px; border-radius:30px; overflow:hidden; float:left;}
+#RecipeContainer .thumbnail_box .thumnail_propic img{width:100%;}
+#RecipeContainer .thumbnail_box .thumnail_introduce{float:left; margin-left:10px; width:80%; max-height:42px; overflow:hidden;}
+#RecipeContainer .thumbnail_box .thumnail_introduce p{font-weight:500; font-size:16px; margin-top:2px;}
+#RecipeContainer .thumbnail_box .thumnail_pic{width:100%; max-height:350px; overflow:hidden; border-radius:10px; margin-top:15px;}
+#RecipeContainer .thumbnail_box .thumnail_pic img{width:100%; height:350px; background-color:#ccc; position:relative; border-radius:10px; overflow:hidden;}
+#RecipeContainer .thumbnail_box .thumnail_pic h4{position:absolute; right:25px; bottom:25px; font-size:36px; color:#fff; font-weight:500;}
+#RecipeContainer .thumbnail_box .thumnail_content{font-size:16px; margin-top:7px; text-align:justify; min-height:48px; max-height:48px; overflow:hidden;}
+
+#RecipeContainer .thumbnail_box ul li{float:left; width:33.33%; text-align:center; padding:7px 0 0 0;}
+#RecipeContainer .thumbnail_box ul::after{content:"";  display:table; clear:both;}
+#RecipeContainer .thumbnail_box .thumnail_tag{margin-top:5px; min-height:44px; max-height:44px; overflow:hidden;}
+#RecipeContainer .thumbnail_box .thumnail_tag a{color:#bbb;}
+#RecipeContainer .thumbnail_box .thumnail_tag a:hover{color:rgb(255, 128, 128);}
+#RecipeContainer #RecipeCreate{width:1200px; margin:0 auto;}
+#RecipeContainer #RecipeCreate input[type="text"]{width:100%; border:1px solid #bbb; padding:5px 7px; margin-bottom:7px;}
+#RecipeContainer #RecipeCreate input[type="button"]{border:1px solid #bbb; line-height:32px; margin-bottom:7px; width:150px; height:32px;}
+#RecipeContainer #RecipeCreate input[type="submit"]{border:1px solid #bbb; line-height:32px; margin-bottom:7px; width:150px; height:32px;}
+#RecipeContainer #RecipeCreate textarea{border:1px solid #bbb; padding:5px 7px; margin-bottom:7px;}
+#RecipeContainer #RecipeCreate .RecipeCreateArea{width:61.5%; margin:0 auto;}
+#RecipeContainer #RecipeCreate .RecipeCreateArea h2{margin-bottom:10px;}
+#RecipeContainer #RecipeCreate .RecipeCreateArea ul li{width:25%; height:32px; padding:5px 7px; float:left; border:1px solid #ddd; margin-bottom:5px;}
+#RecipeContainer #RecipeCreate .infoArea{color:#fff; text-align:center;
+										background: #FC5C7D;  /* fallback for old browsers */
+										background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+										background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+										}
+.likeIcon{font-size:16px; color:#ff8080; margin-right:5px;}
+.normalIcon{font-size:16px; color:#ccc; transition:0.3s;}
+.recipeIcon{font-size:16px; cursor:pointer; transition:0.3s;
+	 background: linear-gradient(45deg, #6A82FB, #FC5C7D);
+ 	 -webkit-background-clip: text;
+	 -webkit-text-fill-color: transparent;
+}
+.RecipeIcon:hover{color:#999;}
+.normalIcon:hover{color:#999;}
+.blueTitle{color:#80cae6; font-weight:700;}
+
+/* recipe 슬라이드 */
+/* 슬라이드 css */
+#RecipeContainer .recipe_main_banner .slide {
+  position: relative;
+  overflow: hidden;
+}
+
+#RecipeContainer .recipe_main_banner .panel {
+  width: 400%;
+}
+
+#RecipeContainer .recipe_main_banner .panel:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#RecipeContainer .recipe_main_banner .panel>li {
+  width: 25%;
+  height: 320px;
+  float: left;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+}
+
+#RecipeContainer .recipe_main_banner .panel>li:nth-of-type(1) {
+  background-image:url("/resources/img/recipe_img/recipe_main_banner.jpg"); background-position: center center; background-size:cover;  
+}
+#RecipeContainer .recipe_main_banner .panel>li .recipe_main_banner_copybox{z-index:2;}
+#RecipeContainer .recipe_main_banner .panel>li:nth-of-type(2) {
+  background-image:url("/resources/img/recipe_img/recipe_main_banner3.jpg"); background-position: center center; background-size:cover; }
+
+#RecipeContainer .recipe_main_banner .panel>li:nth-of-type(3) {  background-image:url("/resources/img/recipe_img/recipe_main_banner2.jpg"); background-position: center center; background-size:cover;}
+
+#RecipeContainer .recipe_main_banner .dot:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#RecipeContainer .recipe_main_banner .dot {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+#RecipeContainer .recipe_main_banner .dot>li {
+  float: left;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity:0.6;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+
+#RecipeContainer .recipe_main_banner .dot>li.on {
+  background-color: #fff;
+  opacity:1.0;
+  transform:scale(1.7);
+}
+
+#RecipeContainer .recipe_main_banner .MainCopy{position:absolute; top: 30%; left:18%; z-index:3;}
+#RecipeContainer .recipe_main_banner .MainCopy h4{color:#fff; font-size:24px; font-weight:400; margin-bottom: 10px;}
+#RecipeContainer .recipe_main_banner .MainCopy h1{color:#fff; font-size:48px; line-height:130%;}
+
+
+
+/* 이미지 scale 부분 */
+#RecipeContainer .thumbnail_box .thumnail_pic .scale {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transition: all 0.5s ease-in-out;
+
+}
+#RecipeContainer .thumbnail_box .thumnail_pic .scale:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+/* 댓글 textform css */
+.commentTextFrom{margin-top:15px; padding:5px 10px;}
+
+/* 검색창 css */
+#RecipeContainer select{height:38px; padding:0 9px; border:1px solid #ccc;}
+
+/* recipe/recipeDetail 페이지 */
+#RecipeContainer #RecipeDetail{width:80%; margin:0 auto;}
+#RecipeContainer #RecipeDetail .WriterInfo {text-align:center; width:80%; margin:0 auto;}
+#RecipeContainer #RecipeDetail .WriterInfo button{background-color:#eee; padding:5px 7px; border-radius:3px; transition:1s;}
+#RecipeContainer #RecipeDetail .WriterInfo button:hover{background-color:rgb(255, 128, 128); color:#fff;}
+#RecipeContainer #RecipeDetail .WriterInfo h2{font-size:42px; line-height:54px; padding:5px 0; color:#ff8080;}
+#RecipeContainer #RecipeDetail .WriterInfo span{color:#bbb; font-size:16px; font-weight:500; display:inline-block; margin-bottom:15px;}
+#RecipeContainer #RecipeDetail .WriterInfo hr{border-bottom:1px solid #eee; margin:20px 0;}
+#RecipeContainer #RecipeDetail .WriterInfo img{width:50px; height:50px; border-radius: 10px; overflow: hidden;}
+#RecipeContainer #RecipeDetail .RecipeInfo .mainPic{width:80%; margin:0 auto; text-align:center;}
+#RecipeContainer #RecipeDetail .RecipeInfo .mainPic img{max-width:100%;}
+#RecipeContainer #RecipeDetail .RecipeInfo .kcalAndTime{width:80%; margin:15px auto 0 auto; background-color:#f7f8fa; border-radius:5px; padding:24px 24px;}
+#RecipeContainer #RecipeDetail .RecipeInfo .kcalAndTime ul li{float:left; width:50%; text-align:center; font-size:20px; font-style:italic;}
+#RecipeContainer #RecipeDetail .RecipeInfo .kcalAndTime ul li .point{font-size:24px; font-weight:700; color:#0080c0;}
+#RecipeContainer #RecipeDetail .RecipeInfo .kcalAndTime ul::after{content:""; display:table; clear:both;}
+#RecipeContainer #RecipeDetail .RecipeInfo .kcalAndTime hr{border-bottom:1px solid #bbb; margin:20px 0;}
+#RecipeContainer #RecipeDetail .RecipeInfo .kcalAndTime .color{color:#0080c0;}
+#RecipeContainer #RecipeDetail .RecipeInfo .kcalAndTime p{padding-top:2px;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeContent {width:80%; margin:0 auto; padding:20px 0;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeContent h2{margin-bottom:10px;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeContent img {max-width: 100%;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeFooter{width:80%; margin:0 auto; padding:20px 0;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeFooter hr{border-bottom:1px solid #bbb; margin-bottom:10px;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeFooter ul li{float:left; margin-right:10px; }
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeFooter .RightSide{float:right;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeFooter .RightSide li{margin:0 0 0 10px;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeFooter::after{content:""; display:table; clear:both;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeFooter button{padding:7px 10px; background-color:#80cae6; color:#fff; transition:1s; border-radius:3px;}
+#RecipeContainer #RecipeDetail .RecipeInfo .RecipeFooter button:hover{background-color:#1a6784;}
+
+/* recipe/recipeModify */
+#RecipeContainer #RecipeDetail .ModifyInfo {text-align:center;}
+#RecipeContainer #RecipeDetail .ModifyInfo h2{font-size:42px; line-height:54px; padding:5px 0; color:#ff8080;}
+#RecipeContainer #RecipeDetail .ModifyInfo span{color:#bbb;}
+#RecipeContainer #RecipeDetail .ModifyInfo hr{border-bottom:1px solid #eee; margin:20px 0;}
+#RecipeContainer #RecipeDetail .ModifyInfo img{width:50px; height:50px; border-radius: 10px; overflow: hidden;}
+
+
+
+/* recipe/recipeDetail 페이지-모달- */
+#RecipeContainer_detail{width:100%; margin:0 auto;}
+#RecipeContainer_detail h1{text-align:center; font-size:32px; color:#333;}
+#RecipeContainer_detail #RecipeDetail .WriterInfo {text-align:center;}
+#RecipeContainer_detail #RecipeDetail .WriterInfo button{background-color:#eee; padding:5px 7px; border-radius:3px; transition:1s;}
+#RecipeContainer_detail #RecipeDetail .WriterInfo button:hover{background-color:rgb(255, 128, 128); color:#fff;}
+#RecipeContainer_detail #RecipeDetail .WriterInfo h2{font-size:42px; line-height:54px; padding:5px 0; color:#ff8080;}
+#RecipeContainer_detail #RecipeDetail .WriterInfo span{color:#bbb;}
+#RecipeContainer_detail #RecipeDetail .WriterInfo hr{border-bottom:1px solid #eee; margin:20px auto; width:90%;}
+#RecipeContainer_detail #RecipeDetail .WriterInfo img{width:50px; height:50px; border-radius: 10px; overflow: hidden;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .kcalAndTime{width:90%; margin:0 auto; background-color:#f7f8fa; border-radius:5px; padding:24px 24px;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .kcalAndTime ul li{float:left; width:50%; text-align:center;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .kcalAndTime ul li .point{font-size:24px; font-weight:700; color:#0080c0;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .kcalAndTime ul::after{content:""; display:table; clear:both;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .kcalAndTime hr{border-bottom:1px solid #bbb; margin:20px 0;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .kcalAndTime .color{color:#0080c0;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .kcalAndTime p{padding-top:2px;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeContent {width:90%; margin:0 auto; padding:20px 0;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeContent img {max-width: 100%;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeFooter{width:90%; margin:0 auto; padding:20px 0;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeFooter hr{border-bottom:1px solid #bbb; margin-bottom:10px;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeFooter ul li{float:left; margin-right:10px; }
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeFooter .RightSide{float:right;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeFooter .RightSide li{margin:0 0 0 10px;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeFooter::after{content:""; display:table; clear:both;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeFooter button{padding:7px 10px; background-color:#80cae6; color:#fff; transition:1s; border-radius:3px;}
+#RecipeContainer_detail #RecipeDetail .RecipeInfo .RecipeFooter button:hover{background-color:#1a6784;}
+
+
+/* recipe/recipeCreate 버튼 클릭 시 이벤트 제어 */
+.hiddenBox{visibility: hidden; width:1px; height:1px;}
+.checkedButton{padding: 5px 7px; margin:0 5px 7px 0; border-radius:3px; background-color:#80cae6; color:#1a6784; transition:0.3s;}
+.uncheckedButton{padding: 5px 7px; margin:0 5px 7px 0; border-radius:3px; background-color:#ddd; color:#999; transition:0.3s;}
+
+
+/* tip/listPage */ 
+#TipContainer{width:1200px; margin:120px auto;}
+#TipContainer h1{text-align:center; font-size:32px; color:#333;}
+#TipContainer .tip_main_banner{width:100%; background-color:#eee; height:320px; margin:30px 0; position:relative; overflow:hidden;}
+#TipContainer #tipContentBox{width:100%; border:1px solid #eee; margin-top:15px; padding:20px; height:250px; transition:0.3s;}
+#TipContainer #tipContentBox:hover{ 
+	transition:0.3s;
+	box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+	 -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+	 -moz-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);}
+#TipContainer #tipContentBox .tipThumbnail{width:300px; height:210px; overflow:hidden; float:left;}
+#TipContainer #tipContentBox .tipThumbnail img{width:100%;}
+#TipContainer #tipContentBox .tipInfoBox{float:left; width:50%; height:100%; margin-left:20px; padding-top:25px;}
+#TipContainer #tipContentBox .tipInfoBox h2{font-size:42px; font-weight:200; margin-bottom:10px; font-style:italic;}
+#TipContainer #tipContentBox .tipInfoBox h2 a{font-weight:100;}
+#TipContainer #tipContentBox .tipInfoBox h3{font-size:24px; font-weight:700; padding:10px 0;}
+#TipContainer #tipContentBox .tipInfoBox h4{font-weight:500; padding:10px 0;}
+#TipContainer #tipContentBox .tipInfoBox p{font-size:16px; color:#999; line-height:160%; max-height:80px; overflow: hidden;}
+#TipContainer .tip_main_banner_copybox{position:absolute; top:120px; right:100px; color:#fff;}
+#TipContainer .tip_main_banner_copybox h2{color:#fff; margin-bottom:15px;}
+#TipContainer #tipContentBox .tipIDBox{height:100%; width:18%; float:left; text-align:center; padding:38px 20px;}
+#TipContainer #tipContentBox .hrLine{width:1px; height:80%; background:#eee; margin:20px 20px 0 20px; float:left;}
+#TipContainer #tipContentBox .tipIDBox .miniBox{width:100%;}
+#TipContainer .writeButton{float:right; margin-top:10px;}
+#TipContainer #tipContentBox .tipIDBox .miniBox ul li{float:left; width:33.33%; text-align:center; padding:7px 0 0 0; margin-top:7px;}
+#TipContainer #tipContentBox .tipIDBox .miniBox ul::after{content:"";  display:table; clear:both;}
+#TipContainer #tipContentBox .tipIDBox .miniBox .thumnail_propic{width:50px; height:50px; border-radius:30px; overflow:hidden; margin:0 auto;}
+#TipContainer #tipContentBox .tipIDBox .miniBox .thumnail_propic img{width:100%;}
+#TipContainer #tipContentBox .tipIDBox .miniBox p.nickname{font-size:16px; font-weight:600; margin-top:5px; color:#555;}
+#TipContainer #tipContentBox .tipIDBox .miniBox p.dayHit{font-style:italic; color:#aaa;}
+
+/* tip/viewTip */ 
+#TipContainer #TipDetail .WriterInfo {text-align:center;}
+#TipContainer #TipDetail .WriterInfo button{background-color:#eee; padding:5px 7px; border-radius:3px; transition:1s;}
+#TipContainer #TipDetail .WriterInfo button:hover{background-color:rgb(255, 128, 128); color:#fff;}
+#TipContainer #TipDetail .WriterInfo h2{font-size:42px; line-height:54px; padding:5px 0; color:#ff8080;}
+#TipContainer #TipDetail .WriterInfo span{color:#bbb;}
+#TipContainer #TipDetail .WriterInfo hr{border-bottom:1px solid #eee; margin:20px 0;}
+#TipContainer #TipDetail .WriterInfo img{width:50px; height:50px; border-radius: 10px; overflow: hidden;}
+#TipContainer #TipDetail .TipContent {width:80%; margin:0 auto; padding:20px 0;}
+#TipContainer #TipDetail .TipContent img {max-width: 100%;}
+#TipContainer #TipDetail .TipFooter{width:80%; margin:0 auto; padding:20px 0;}
+#TipContainer #TipDetail .TipFooter hr{border-bottom:1px solid #bbb; margin-bottom:10px;}
+#TipContainer #TipDetail .TipFooter ul li{float:left; margin-right:10px; }
+#TipContainer #TipDetail .TipFooter .RightSide{float:right;}
+#TipContainer #TipDetail .TipFooter .RightSide li{margin:0 0 0 10px;}
+#TipContainer #TipDetail .TipFooter::after{content:""; display:table; clear:both;}
+#TipContainer #TipDetail .TipFooter button{padding:7px 10px; background-color:#80cae6; color:#fff; transition:1s; border-radius:3px;}
+#TipContainer #TipDetail .TipFooter button:hover{background-color:#1a6784;}
+
+/* tip/viewTip-comment */
+#TipContainer #CommentContainer{width:80%; margin:0 auto; padding:0 0 20px 0;}
+#TipContainer #CommentContainer h4{font-size:16px; font-weight:500; margin-bottom:15px;}
+
+/* recipe/recipeDetail-comment */
+#RecipeContainer #CommentContainer{width:80%; margin:0 auto; padding:0 0 20px 0;}
+#RecipeContainer #CommentContainer h4{font-size:16px; font-weight:500; margin-bottom:15px;}
+
+/* 댓글창 Ajax 버튼 제어 */
+.CommentMod{text-align:center; width:40px; height:22px; font-size:12px; border-radius:3px; border:1px solid #eee; 
+			background:#f8f8f8; margin-right:3px; transition:0.3s; position:absolute; top:15px; right:55px;}
+.CommentMod:hover{background:#ff8080; border-radius:3px; transition:0.3s; color:#fff;}
+.CommentDel{text-align:center; width:40px; height:22px; font-size:12px; border-radius:3px; border:1px solid #eee; 
+			background:#f8f8f8; transition:0.3s; position:absolute; top:15px; right:13px;}
+.CommentDel:hover{background:#ff8080; border-radius:3px; transition:0.3s; color:#fff;}
+.commentCon{padding:0 0 20px 0;}
+.commentArea{padding:10px; border-radius:7px; border:1px solid #eee; margin-bottom:5px; position:relative;}
+.commentNum{float:left; margin-right:15px; font-style:italic; }
+.commentName{color:#9c836a;}
+.commentSubmit{display:block; width:100%; letter-spacing:5px; font-size:12px; 
+	height:38px; border: 0; border-radius:3px; color:#fff; margin:5px auto; cursor:pointer;
+	background: #FC5C7D;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	}
+.commentWriter{display:block; width:100%; margin:0 auto;}
+
+/* 페이징 처리 */
+
+.paging{width:300px; text-align:center; margin:0 auto;}
+.paging span{margin-right:5px;}
+
+/* user/login */ 
+#UserContainer{width:1200px; margin:0px auto; padding:100px 0;}
+#UserContainer h4{font-size:40px; text-align:center; font-weight:700; margin-bottom:20px;}
+#UserContainer h5{font-size:24px; text-align:center; font-weight:300; margin-bottom:25px;}
+#UserContainer .fullBox_grey{overflow:hidden; background:#f9f9f9; padding:30px 0 60px 0;}
+#UserContainer .fullBox_grey h5{text-align:left;}
+#UserContainer .fullBox_grey .boxArea{width:100%; padding:40px 80px; margin:0 auto;}
+#UserContainer .fullBox_grey .loginBox{width:50%; float:left; padding-right:79px; border-right:1px solid #eceae7;}
+#UserContainer input{width:100%; height:48px; border:1px solid #e6e3df; padding:0 12px; font-size:14px; font-weight:300; margin:4px 0; transition:all .3s ease; }
+#UserContainer .naverBtn{width:100%; height:48px; margin:4px 0; padding:0 32px; font-size:16px; color:#fff; background-color:#2DB400; border-radius:2px;}
+#UserContainer .kakaoBtn{width:100%; height:48px; margin:4px 0; padding:0 32px; font-size:16px; color:#964B00; font-weight:500; background-color:#F7E600; border-radius:2px;}
+#UserContainer .googleBtn{width:100%; height:48px; margin:4px 0; padding:0 32px; font-size:16px; color:#333; background-color:#fff; border:1px solid #333; border-radius:2px;}
+#UserContainer .joinBox{width:50%; float:right; padding-left:80px;}
+#UserContainer .InsertArea{width:600px; margin:0 auto;}
+#UserContainer .InsertArea h5{font-size:20px; font-weight:700; margin:20px 0 10px 0;}
+
+
+/* user/info */
+#AdminContainer h4{font-size:40px; text-align:center; font-weight:700; margin:20px 0;}
+#AdminContainer h5{font-size:24px; text-align:center; font-weight:300; margin-bottom:25px;}
+#AdminContainer .InfoArea{width:600px; margin:0 auto;}
+#AdminContainer .InfoArea h5{font-size:20px; font-weight:300; margin:20px 0 10px 0;}
+#AdminContainer .InfoArea input{font-size:14px; border:1px solid #ddd; padding:5px 7px; margin:5px 0; width:100%; height:45px;}
+#AdminContainer .InfoArea input[type="button"]{width:100%; height:45px; color:#fff; font-family:'Noto Sans KR'; font-weight:500; border:1px solid #ccc; transition:0.7s;
+												background: #FC5C7D;  /* fallback for old browsers */
+												background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+												background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */}
+#AdminContainer .InfoArea input[type="button"]:hover{color:#fff; background: #FC5C7D; }
+
+#AdminContainer .InfoArea .infoForm{width:100%; background-color:#fff; border:1px solid #ccc; padding:10px 7px; color:#999; font-size:17px; height:48px;}
+#AdminContainer .InfoArea p{margin:7px 0 3px 0; font-weight:500;}
+.pw_msg1{color:#FC5C7D;}
+.pw_msg2{color:#6A82FB;}
+.pw_msg3{color:#FC5C7D;}
+
+
+/* store/payment */
+#PayContainer{width:1200px; margin:0px auto; padding:100px 0;}
+#PayContainer h1{text-align:center; font-size:32px; color:#333; margin-bottom:15px;}
+#PayContainer #ReviewOrder{width:100%; border:1px solid #eee; border-radius:7px; box-sizing:border-box; margin-top:40px;}
+#PayContainer #ReviewOrder .ContentBox .OrderList{padding:15px 10px 15px 10px; border-bottom:1px solid #eee;}
+#PayContainer #ReviewOrder .ContentBox .OrderList .OrderThum{width:20%; float:left;}
+#PayContainer #ReviewOrder .ContentBox .OrderList .OrderThum img{width:100%; height:100%; background-color:#ccc; position:relative; border-radius:10px; overflow:hidden;}
+#PayContainer #ReviewOrder .ContentBox .OrderInfo{width:45%; float:left;} 
+#PayContainer #ReviewOrder .ContentBox .OrderInfo h3{font-size:20px; margin-bottom:7px;} 
+#PayContainer #ReviewOrder .ContentBox .OrderInfo h4{font-size:16px; font-weight:300; margin-bottom:7px;} 
+#PayContainer #ReviewOrder .ContentBox .OrderAmount{width:15%; float:left;} 
+#PayContainer #ReviewOrder .ContentBox .OrderAmount input[type="number"]{border:1px solid #ddd;} 
+
+#PayContainer #ReviewOrder .ContentBox .OrderCost{width:20%; float:left;} 
+#PayContainer #ReviewOrder .ContentBox .OrderCost p{margin:0; font-size:18px; font-weight:500;} 
+#PayContainer #ReviewOrder .ContentBox .semiCost{padding:10px; border-bottom:1px solid #eee;}
+#PayContainer #ReviewOrder .ContentBox .semiCost p{width:90%; display:inline-block;}
+#PayContainer #ReviewOrder .ContentBox .totalCostArea{padding:10px; border-bottom:1px solid #eee;}
+#PayContainer #ReviewOrder .ContentBox .totalCostArea p{width:90%; display:inline-block;}
+#PayContainer .TitleBar{width:100%; height:40px; padding:10px 20px; color:#fff; font-size:16px; font-weight:700; 
+									background-color:#990000; border-top-left-radius:7px; border-top-right-radius:7px;
+									background: #FC5C7D;  /* fallback for old browsers */
+									background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+									background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */}
+#PayContainer #ReviewOrder .ContentBox .txtAlignR{text-align:right;}
+#PayContainer #CustomerArea{width:100%; box-sizing:border-box; margin-top:25px;}
+#PayContainer #AddressArea{width:49%; border:1px solid #eee; border-radius:7px; float:left; }
+#PayContainer #SecurePayment{width:49%; border:1px solid #eee; float:right; border-radius:7px; }
+#PayContainer .ContentBox{padding:20px 15px; background:#fff;}
+#PayContainer .ContentBox h2{font-size:18px; font-weight:500; color:#333;}
+#PayContainer input[type="text"]{width:100%; margin-top:2px; border-radius:3px;}
+#PayContainer input[type="submit"]{margin-top:2px; border-radius:3px;}
+#PayContainer .wdh80{width:73% !important;}
+#PayContainer .postCodeBtn{width:25%; float:right; height:32px; margin-top:3px;}
+#PayContainer p{margin:7px 0 2px 0; font-size:15px; font-weight:600;}
+#PayContainer select{width:100%; border:1px solid #eee; height:32px;}
+.productCost{text-align:right; font-weight:300; font-size:24px;}
+.deliveryCost{text-align:right; font-weight:300; font-size:24px;}
+.totalCost{text-align:right; font-weight:300; font-size:24px;}
+
+#PayContainer .orderInfo{ display: none; }
+
+#PayContainer .orderInfo_{ width: 1000px; padding-left: 200px;}
+#PayContainer .ContentBox_{text-align:center; padding:20px 15px;}
+#PayContainer .ContentBox_ h2{font-size:18px; font-weight:500; color:#333;}
+#PayContainer .orderButton input[type="button"]{width: 100%; height:50px; text-align: center;}
+
+
+#PayContainer .orderViewInfo {width:100%; border:1px solid #eee; border-radius:7px; box-sizing:border-box; margin-top:40px;}
+#PayContainer .orderViewInfo hr {width:100%; border:1px solid #eee; border-radius:7px; box-sizing:border-box; margin-top:40px;}
+#PayContainer .orderViewInfo .ContentBox {text-align:center; padding:20px 15px;}
+#PayContainer .orderViewInfo .ContentBox h2{font-size:18px; font-weight:500; color:#333;}
+#PayContainer .orderViewInfo .ContentBox h1{font-size:50px;}
+
+#PayContainer .orderViewInfo .ContentBox .info{margin-left: 350px; width:20%; float:left;}
+#PayContainer .orderViewInfo .ContentBox .tel{width:20%; float:left;}
+#PayContainer .orderViewInfo .ContentBox .del{	 font-size:50px;
+	background: linear-gradient(45deg, #6A82FB, #FC5C7D);
+ 	 -webkit-background-clip: text;
+	 -webkit-text-fill-color: transparent;}
+#PayContainer .orderViewInfo .ContentBox .del1 {width:10%; float:left; margin-left: 350px;} 
+#PayContainer .orderViewInfo .ContentBox .del2 {width:10%; float:left;} 
+#PayContainer .orderViewInfo .ContentBox .del3 {width:10%; float:left;} 
+#PayContainer .orderViewInfo .ContentBox .del4 {width:10%; float:left;} 
+
+/* SNS 로그인 버튼 제어 */
+#snsLoginBox img{width:183px; margin-bottom:5px;}
+#google_id_login {
+      display: inline-block;
+      background: white;
+      color: #444;
+      width: 190px;
+      border-radius: 5px;
+      border: thin solid #888;
+      white-space: nowrap;
+    }
+    #google_id_login:hover {
+      cursor: pointer;
+    }
+    span.icon {
+      background: url('/resources/img/snslogin_icon/g-normal.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 42px;
+      height: 42px;
+    }
+    #google_id_login.span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 42px;
+      padding-right: 42px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+ 
+ 
+/* admin/main */
+#ViewContainerGrey{background-color:#f8f8f8;}
+#ViewContainerGrey #AdminContainer{width:1200px; margin:0px auto; padding:100px 0; font-family:'Montserrat', "Noto Sans KR", sans-serif !important;}
+#ViewContainerGrey #AdminContainer h1,h2,h3,h4,h5,p,span{font-family:'Montserrat', "Noto Sans KR", sans-serif;}
+#AdminProfileArea {
+	border-radius: 5px; padding:30px 30px; height:110px;
+}
+#AdminProfileArea #proArea{width:30%; float:left;}
+#AdminProfileArea .propic{margin-right:15px; width:50px; height:50px; overflow:hidden; border-radius:25px; float:left;}
+#AdminProfileArea .propic img{width:100%;}
+#AdminProfileArea h2{font-size:22px; font-weight:600; color:#fff; padding:7px 0 0 0;}
+#AdminProfileArea span{color:#fff; font-size:14px; font-weight:400;}
+#AdminProfileArea #newCountArea{float:right; width:15%; margin-left:5px; padding:5px 10px; background-color:rgba(0,0,0,0.3); border-radius:5px; height:100%; color:#fff; text-align:right;}
+#contentArea h2{font-size:22px; margin:30px 0 20px 0;}
+#contentArea .contentBox{text-align:center; width:24%; margin:0 16px 16px 0; float:left; background-color:#fff; border-radius:5px;
+	padding:30px 20px; 	
+	box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+	 -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+	 -moz-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);}
+#ViewContainerGrey #AdminContainer #contentArea .contentBox a{display: block;}
+#ViewContainerGrey #AdminContainer #contentArea .contentBox h4{font-size:18px; font-weight:500; margin:15px 0 0 0;}
+#ViewContainerGrey #AdminContainer #contentArea .contentBox h1{font-size:80px; color:#aaa; transition:0.9s;}
+#ViewContainerGrey #AdminContainer #contentArea .contentBox h1:hover{	 
+	background: linear-gradient(45deg, #6A82FB, #FC5C7D);
+ 	 -webkit-background-clip: text;
+	 -webkit-text-fill-color: transparent;}
+.mgr0{margin-right:0 !important;}
+
+/* admin/userList */
+#ViewContainerGrey #AdminContainer #contentArea #AdminContainer #contentArea #userListArea h1,h2,h3,h4,h5,p,span, li{font-family:'Montserrat', "Noto Sans KR", sans-serif;}
+#ViewContainerGrey #AdminContainer #contentArea #AdminContainer #contentArea #userListArea h2{font-size:28px;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #userListTitle {margin-bottom:15px;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #userListTitle ul li{float:left; width:14.28%; text-align:center; font-weight:600; font-size:15px; color:lightslategrey;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #userListTitle ul li:first-of-type{width:12%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #userListTitle ul li:last-of-type{width:10%; color:indianred;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #userListTitle ul li:nth-of-type(5){width:12%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #userListTitle ul li:nth-of-type(4){width:22%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .userList ul:hover{background:azure;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .userList ul li{float:left; width:14.28%; padding:5px 0; text-align:center;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .userList ul li:first-of-type{width:12%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .userList ul li:last-of-type{width:10%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .userList ul li:nth-of-type(5){width:12%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .userList ul li:nth-of-type(4){width:22%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .userList ul{background-color:#fff; transition:0.3s; margin-bottom:10px; border-radius:7px; padding:7px 0;
+																		box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+																		 -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+																		 -moz-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);			
+																		}
+																		
+/* mypage/boardList */
+/* admin/boardList */
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #myBoardListTitle {margin-bottom:15px;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #myBoardListTitle ul li{float:left; text-align:center; font-weight:600; font-size:15px; color:lightslategrey;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #myBoardListTitle ul li:first-of-type{width:15%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #myBoardListTitle ul li:nth-of-type(2){width:35%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #myBoardListTitle ul li:nth-of-type(3){width:10%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #myBoardListTitle ul li:nth-of-type(4){width:20%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #myBoardListTitle ul li:nth-of-type(5){width:10%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #myBoardListTitle ul li:last-of-type{width:10%; color:indianred;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul:hover{background:azure;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul li{float:left; padding:5px 10px; text-align:center;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul li:first-of-type{width:15%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul li:nth-of-type(2){width:35%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul li:nth-of-type(3){width:10%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul li a:hover{color:lightsteelblue; font-weight:300;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul li:nth-of-type(4){width:20%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul li:nth-of-type(5){width:10%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul li:last-of-type{width:10%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .MyboardList ul{background-color:#fff; transition:0.3s; margin-bottom:10px; border-radius:7px; padding:7px 0;
+																		box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+																		 -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+																		 -moz-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);			
+																		}
+																		
+																		
+																		
+																		
+																		
+																		
+.deleteIcon{color:#bbb; transition:0.5s;}
+.deleteIcon:hover{color:indianred;}
+
+/* admin 드롭다운 메뉴 */
+#subMenuArea .menubar ul{background:#fff; margin:20px auto 50px auto; padding:10px 15px; text-align:center; border-radius:7px;
+						box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+						 -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+						 -moz-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+						}
+#subMenuArea .menubar ul li {width:20%; float:left; position:relative;}
+#subMenuArea .menubar li a{font-size:15px; font-weight:600; color:lightslategrey; display:block;}
+#subMenuArea .menubar li ul { background: rgb(255,255,255,0.9); display:none; /* 평상시에는 서브메뉴가 안보이게 하기 */ height:auto; 
+margin:0px; border:0px; position:absolute; top:22px; left:30px; padding:0; width:170px; z-index:200; border-radius: 7px;}
+#subMenuArea .menubar li:hover ul { display:block; /* 마우스 커서 올리면 서브메뉴 보이게 하기 */ animation: fade-in 0.8s;}
+#subMenuArea .menubar .innerMenu li{width:100%; padding:10px 0; border-bottom:1px solid #eee;}
+#subMenuArea .menubar .innerMenu li a{font-size:14px; font-weight:400; color:#aaa; display:block;}
+#subMenuArea .menubar .innerMenu li a:hover{font-size:14px; font-weight:400; color:#fff; display:block;}
+#subMenuArea .menubar .innerMenu li:hover{background-color:lightslategrey; color:#fff;}
+#subMenuArea .menubar .innerMenu li:last-of-type:hover{border-bottom-left-radius:7px; border-bottom-right-radius:7px;}
+#subMenuArea .menubar .innerMenu li:first-of-type:hover{border-top-left-radius:7px; border-top-right-radius:7px;}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* admin/boardList */
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #boardListTitle {margin-bottom:15px;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #boardListTitle ul li{float:left; width:14.28%; text-align:center; font-weight:600; font-size:15px; color:lightslategrey;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #boardListTitle ul li:first-of-type{width:8%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #boardListTitle ul li:nth-of-type(2){width:10%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #boardListTitle ul li:nth-of-type(3){width:25%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #boardListTitle ul li:nth-of-type(4){width:35%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #boardListTitle ul li:nth-of-type(5){width:8%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #boardListTitle ul li:nth-of-type(6){width:8%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea #boardListTitle ul li:last-of-type{width:5%; color:indianred;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul:hover{background:azure;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul li{float:left; padding:5px 10px; text-align:center;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul li:first-of-type{width:8%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul li:nth-of-type(2){width:10%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul li:nth-of-type(3){width:25%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul li a:hover{color:lightsteelblue; font-weight:300;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul li:nth-of-type(4){width:35%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul li:nth-of-type(5){width:8%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul li:nth-of-type(6){width:8%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul li:last-of-type{width:5%;}
+#ViewContainerGrey #AdminContainer #contentArea #userListArea .boardList ul{background-color:#fff; transition:0.3s; margin-bottom:10px; border-radius:7px; padding:7px 0;
+																		box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+																		 -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+																		 -moz-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);			
+																		}
+																		
+																		
+/* store/storeWrite */
+#StoreContainer{width:1000px; margin:0 auto;}
+#StoreContainer h1{text-align:center; font-size:32px; color:#333;}
+#StoreContainer form{text-align:center;}
+#StoreContainer form table input{text-align:center; width:500px; height: 30px;}
+#StoreContainer form table select{text-align:center; width:500px; height: 30px;}
+#StoreContainer td:nth-child(1) {text-align:center; width: 250px;}
+#StoreContainer td:nth-child(2) {text-align:left;}
+#StoreContainer input{text-align:center; width:49%; height: 50px;}
+
+/* StoreList */
+#StoreListContainer{width:1200px; margin:0 auto; text-align: center;}
+#StoreListContainer h1{text-align:center; font-size:32px; color:#333;}
+
+#StoreListContainer #content ul li { display:inline-block; margin:10px; }
+#StoreListContainer #content div.thumb img { width:300px; height:300px; overflow:hidden; border-radius:10px; margin: 10px 10px 10px 10px;}
+#StoreListContainer #content div.goodsName { padding:0 0; text-align:center; }
+#StoreListContainer #content div.goodsName a { color:#000; }
+#StoreListContainer #content div.goodsPrice a { color:#000; font-size: 20px; font-weight: bold;}
+#StoreListContainer input[type="text"] {width: 400px;}
+#StoreListContainer .thumbnail_box{width:32%; border-radius:5px; border:1px solid #eee; padding:20px; float:left; margin:50px 8px 10px 8px; transition:0.3s;}
+#StoreListContainer .thumbnail_box:hover{transition:0.3s;
+	box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+	 -webkit-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);
+	 -moz-box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.08);}
+ 
+ 
+ /* storeDetail */
+
+#StoreDetailContainer{width:900px; margin:0 auto; text-align: center;}
+#StoreDetailContainer h1{text-align:center; font-size:32px; color:#333;}
+#StoreDetailContainer div.product div.img { float:left; width:400px; margin-left: 20px;}
+#StoreDetailContainer div.product div.img img { width:400px; height:auto; border-radius:10px; margin: 10px 10px 10px 10px;}
+ 
+#StoreDetailContainer div.product div.infoTable {float:left; width:400px; height:500px; font-size:16px; background:#f7f8fa; margin: 10px 0 0 50px; border-radius:10px;}
+#StoreDetailContainer div.product div.info { text-align:left; padding-left: 30px; padding-right: 30px;}
+#StoreDetailContainer div.product div.info p { color:#000;}
+#StoreDetailContainer div.product div.info p span {width:100px; }
+#StoreDetailContainer div.product div.info p.cate  {margin-top: 30px; font-size: 12px; color:#ff8080;}
+#StoreDetailContainer div.product div.info p.product span {font-size: 30px; font-weight: bold; }
+#StoreDetailContainer div.product div.info p.price span {font-size: 25px; font-weight: bold; color:#0080c0; }
+ 
+#StoreDetailContainer div.product div.info p.cartStock input { text-align:center; font-size:20px; width:50px; padding:5px; margin:0; border:1px solid #eee; }
+#StoreDetailContainer div.product div.info p.cartStock button { font-size:22px; border:none; background:none; }
+#StoreDetailContainer div.product div.info p.addToCart { text-align:center; }
+#StoreDetailContainer div.product input[type="button"] { width: 80%; }
+#StoreDetailContainer div.product div.info select { text-align:center; }
+#StoreDetailContainer div.product div.info hr{border-bottom:1px solid #bbb; margin:0 0 40px; } 
+#StoreDetailContainer div.product div.s_content { font-size:14px; clear:both; padding-top:60px; text-align: center;}
+#StoreDetailContainer div.product div.s_content img {max-width: 800px; }
+#StoreDetailContainer div.product div.s_content p {font-size: 40px; text-align: left; font-style: italic; margin-left: 80px; }
+#StoreDetailContainer div.product div.s_content hr{border-bottom:1px solid #bbb; margin:0 0 40px; width: 900px; text-align: center;} 
+
+#StoreDetailContainer .header_button {text-align: right; padding-right: 80px; }
+#StoreDetailContainer .header_button button {padding:7px 10px; background-color:#80cae6; color:#fff; transition:1s; border-radius:3px;}
+ 
+ 
+ 
+ 
+ /* cart */
+
+ #CartListContainer #content ul li { margin:10px 0; }
+ #CartListContainer #content ul li img { width:200px; height:200px; }
+ #CartListContainer #content ul li::after { content:""; display:block; clear:both; }
+ #CartListContainer #content div.thumb { float:left; width:200px; }
+ #CartListContainer #content div.info { float:right; width:calc(100% - 270px); }
+ #CartListContainer #content div.info { font-size:20px; line-height:2; }
+ #CartListContainer #content div.info span { display:inline-block; width:100px; font-weight:bold; margin-right:10px; }
+ #CartListContainer #content div.info .delete { text-align:right; }
+ #CartListContainer #content div.info .delete button { font-size:22px;
+            padding:5px 10px; border:1px solid #eee; background:#eee;}
+
+#CartListContainer #content div.info div.product p {font-size: 20px; font-weight: bold;}
+
+#CartListContainer{width:1200px; margin:0 auto; text-align: center;}
+#CartListContainer h1{text-align:center; font-size:32px; color:#333;}
+
+#CartListContainer .thumbnail_box{width:90%; height:250px; border-radius:5px; border:1px solid #eee; padding:20px;  margin:50px 8px 10px 8px; transition:0.3s;}
+
+
+#CartListContainer .allCheck { float:left; width:200px; }
+#CartListContainer .allCheck input { width:16px; height:16px; }
+#CartListContainer .allCheck label { margin-left:10px; }
+#CartListContainer .delBtn { float:right; width:300px; text-align:right; }
+#CartListContainer .delBtn button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+
+#CartListContainer .checkBox { float:left; width:30px; }
+#CartListContainer.checkBox input { width:16px; height:16px; }
+

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지.
+  		#{} 구문은 get()/set()으로 사용돼. 
+  		https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 여기 읽어보면 문법이 나와있어. -->
+  
+  <mapper namespace="com.luvit.mapper.StoreMapper">
+	
+	
+	<select id="getTime" resultType="string">
+       select now()
+     </select>
+	
+	<!-- 상품등록 -->
+	<select id="insertProduct">
+	insert into store (s_pno, s_id, s_product, s_subject, s_content, s_price,
+	s_amount, s_option, s_cate, s_file,s_thumbnail,s_date,s_hit)
+	values ((select * from (select max(s_pno)+1 from store) next),#{s_id}, #{s_product}, #{s_subject}, #{s_content}, 
+	#{s_price}, #{s_amount}, #{s_option}, #{s_cate}, #{s_file}, #{s_thumbnail},now(),0)
+	</select>
+  
+  	
+  	<!--  스토어 목록 
+  	<select id="storeList" parameterType="hashMap" resultType="com.luvit.domain.StoreVO">
+  	select
+  	s_pno,s_product,s_subject,s_content,s_price,s_amount,s_option,s_cate,s_thumbnail,s_hit,s_date
+  	from store
+  		order by s_pno desc
+  	limit #{displayPost},#{postNum}
+
+  	</select>
+  	 -->
+  	
+  	<!-- 스토어 목록 + 페이징 + 검색 -->
+  	<select id="listPage" parameterType="hashMap" resultType="com.luvit.domain.StoreVO">
+  	select 
+  	s_pno,s_product,s_subject,s_content,s_price,s_amount,s_option,s_cate,s_thumbnail,s_hit,s_date
+  	from store
+  	
+  	where s_product like concat('%',#{keyword},'%')
+  	
+
+  	order by s_pno desc
+  	limit #{displayPost},#{postNum}
+  	</select>
+  	
+  	
+  	
+  	<!-- 상품 조회 -->
+  	<select id="product" resultType="com.luvit.domain.StoreVO">
+  	select 
+  	s_pno,s_id,s_product,s_subject,s_content,s_price,s_amount,s_option,s_cate,s_file,s_thumbnail,s_hit,s_date
+  	from store
+  	where s_pno = #{s_pno}
+  	</select>
+  	
+  	
+  	<!-- 상품 수정 -->
+  	<update id="modify">
+  	update store 
+  	set
+  	s_pno = #{s_pno},
+  	s_product = #{s_product},
+  	s_subject = #{s_subject},
+  	s_cate = #{s_cate},
+  	s_price = #{s_price},
+  	s_amount = #{s_amount},
+  	s_option = #{s_option},
+  	s_content = #{s_content},
+  	s_file = #{s_file},
+  	s_thumbnail = #{s_thumbnail}
+  	where s_pno = ${s_pno}
+  	</update>
+  	
+  	
+  	<!-- 상품 삭제 -->
+ 	<delete id="delete" parameterType="int">
+ 	delete
+ 	from store
+ 	where s_pno = #{s_pno}
+ 	</delete>
+ 	
+ <!-- 	
+ 	카테고리별 상품 리스트
+ 	<select id="list" resultType="com.luvit.domain.StoreVO">
+ 	select 
+ 	s_pno,s_product,s_content,s_price,s_amount,s_option,s_cate,s_thumbnail,s_hit,s_date
+  	from store
+  	order by s_pno
+  	where s_cate = #{s_cate}
+ 	</select> -->
+ 	
+ 	
+ 	<!-- 상품 총 갯수 -->
+ 	<select id="count" resultType="int">
+ 	select count(s_pno)
+ 	from store
+ 	</select>
+  	
+  <!-- 	 오더  -->
+	<insert id="payment">
+	insert into order(o_ono,o_oid,o_date)
+	values(#{o_ono},#{o_oid},now())
+	</insert>
+  	 
+  	
+  <!--  오더페이지 목록 
+  	<select id="payment" resultType="com.luvit.domain.OrderVO">
+  	select
+      o.o_ono, c.c_id, c.c_pno, c.c_amount, c.c_date,
+     s.s_product as c_product, s.s_price as c_price, s.s_thumbnail as c_thumbnail, (s_price*c_amount) sumMoney
+   	from cart c
+   	inner join store s
+   		on c.c_pno = s.s_pno 
+   	 where c.c_id = #{c_id}
+         
+  	</select> -->
+  
+  </mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

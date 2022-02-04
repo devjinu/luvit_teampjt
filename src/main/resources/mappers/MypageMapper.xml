@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luvit.mapper.MypageMapper">
+
+	<!-- 해당 유저가 작성한  모든 글 갯수 -->
+	<select id="myBoardAllCount" resultType="int">
+		select (select count(*) from recipe where r_id=#{r_id}) + 
+		(select count(*) from recipe_review where r_r_id=#{r_id}) + 
+		(select count(*) from tip where t_id=#{r_id}) from dual
+	</select>
+	<!-- 해당 유저가 작성한 모든 글 목록 -->
+	<select id="myBoardAll" resultType="map">
+		select r_bno as bno, r_subject as subjectName, r_hit as hit, r_date as regdate, r_like_count as likey, 'recipe' as TblName from recipe where r_id=#{r_id} union all 
+		select r_r_bno as bno, r_r_subject as subjectName, r_r_hit as hit, r_r_date as regdate, r_r_like_count as likey, 'recipe_review' as TblName from recipe_review where r_r_id=#{r_id} union all  
+		select t_bno as bno, t_subject as subjectName, t_hit as hit , t_date as regdate, t_like_count as likey, 'tip' as TblName from tip where t_id=#{r_id} 
+		order by regdate desc 
+			limit #{displayPost}, #{postNum}
+	</select>
+	
+
+</mapper>

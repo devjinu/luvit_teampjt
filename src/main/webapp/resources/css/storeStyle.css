@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+
+/* store/storeWrite */
+#StoreContainer{width:800px; margin:0 auto;}
+#StoreContainer h1{text-align:center; font-size:32px; color:#333;}
+#StoreContainer form{text-align:center;}
+#StoreContainer form table input{text-align:center; width:500px; height: 30px;}
+#StoreContainer form table select{text-align:center; width:500px; height: 30px;}
+#StoreContainer td:nth-child(1) {text-align:center; width: 250px;}
+#StoreContainer td:nth-child(2) {text-align:left;}
+#StoreContainer input{text-align:center; width:49%; height: 50px;}
+
+
+#StoreListContainer{width:1000px; margin:0 auto; text-align: center;}
+#StoreListContainer h1{text-align:center; font-size:32px; color:#333;}
+
+#StoreListContainer #content ul li { display:inline-block; margin:10px; }
+#StoreListContainer #content div.thumb img { width:300px; height:300px; }
+#StoreListContainer #content div.goodsName { padding:10px 0; text-align:center; }
+#StoreListContainer #content div.goodsName a { color:#000; }
+
+
+
+/* cart */
+
+ #CartListContainer section#content ul li { margin:10px 0; }
+ #CartListContainer section#content ul li img { width:250px; height:250px; }
+ #CartListContainer section#content ul li::after { content:""; display:block; clear:both; }
+ #CartListContainer section#content div.thumb { float:left; width:250px; }
+ #CartListContainer section#content div.info { float:right; width:calc(100% - 270px); }
+ #CartListContainer section#content div.info { font-size:20px; line-height:2; }
+ #CartListContainer section#content div.info span { display:inline-block; width:100px; font-weight:bold; margin-right:10px; }
+ #CartListContainer section#content div.info .delete { text-align:right; }
+ #CartListContainer section#content div.info .delete button { font-size:22px;
+            padding:5px 10px; border:1px solid #eee; background:#eee;}
+
+
+#CartListContainer{width:1000px; margin:0 auto; text-align: center;}
+#CartListContainer h1{text-align:center; font-size:32px; color:#333;}
+
+#CartListContainer .allCheck { float:left; width:200px; }
+#CartListContainer .allCheck input { width:16px; height:16px; }
+#CartListContainer .allCheck label { margin-left:10px; }
+#CartListContainer .delBtn { float:right; width:300px; text-align:right; }
+#CartListContainer .delBtn button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+
+#CartListContainer .checkBox { float:left; width:30px; }
+#CartListContainer.checkBox input { width:16px; height:16px; }

@@ -1,0 +1,71 @@
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@RequestMapping(value = "/searchPw", method = RequestMethod.POST)
+public ModelAndView findMyPw(HttpServletRequest request, ModelMap model) throws Exception {
+
+        ModelAndView mav = new ModelAndView();
+        String id = request.getParameter("id");
+        String EMAIL = request.getParameter("email");
+
+        int random = (int) (Math.random() * 1000 + 1);
+
+
+//        System.out.println("id  : " + id);
+//        System.out.println("EMAIL  : " + EMAIL);
+//
+////        System.out.println("emailvo.getId() : " + emailvo.getId());
+//        System.out.println("idvo.getEmail() : " + idvo.getEmail());
+//
+//        System.out.println("vo check : " + idvo);
+
+//        if((EMAIL.equals(idvo.getEmail())&&id.equals(emailvo.getId()))==false){
+//            mav.setViewName("/user/emailFail");
+//            return mav;
+//        }
+
+
+        try {
+        /* if (EMAIL.equals(idvo.getEmail())) {*/
+
+        UserVO idvo = service.readMember(id);
+        UserVO emailvo = service.findmyid(EMAIL);
+            System.out.println("emailvo.getId() : " + emailvo);
+        System.out.println("idvo.getEmail() : " + idvo.getEmail());
+        System.out.println("EMAIL : " + EMAIL);
+        System.out.println(idvo.getId().equals(id));
+        System.out.println(idvo.getEmail().equals(EMAIL));
+        if (idvo.getId().equals(id)) {
+        if (idvo.getEmail().equals(EMAIL)) {
+        idvo.setPw(pwEncoder.encode(String.valueOf(random)));
+        System.out.println("@@@@@@@@@@@@" + String.valueOf(random));
+        service.tempPw(idvo);
+        System.out.println("비밀번호 setPw 결과===>" + idvo.getPw());
+
+        MimeMessage msg = mailSender.createMimeMessage();
+        MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
+
+        messageHelper.setSubject(id + "님의 임시 비밀번호입니다.");
+        messageHelper.setText("비밀번호는 " + random + " 입니다.");
+        messageHelper.setTo(EMAIL);
+        msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(EMAIL));
+        mailSender.send(msg);
+
+        }
+        } else {
+        mav.setViewName("/user/emailFail");
+        return mav;
+        }
+        mav.setViewName("/user/emailSuccess");
+        return mav;
+
+        } catch (
+        Exception e) {
+        e.printStackTrace();
+        System.out.println("이메일 발송 실패   @@@@@@@@@@@");
+        mav.setViewName("/user/emailFail");
+        return mav;
+        }
+
+
+        }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지.
+  		#{} 구문은 get()/set()으로 사용돼. 
+  		https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 여기 읽어보면 문법이 나와있어. -->
+  
+  <mapper namespace="com.luvit.mapper.BoardQNAMapper">
+
+    <select id="getTime" resultType="string">
+      select now()
+    </select>
+    
+    <insert id="insertMember">
+      insert into qna (q_bno,q_nickname,q_subject,q_contents,q_file,q_date,
+                       q_hit,q_secret,q_pw,q_re_ref,q_re_lev,q_re_seq)
+      values (#{q_bno},#{q_nickname},#{q_subject},#{q_contents},#{q_file},#{q_date},
+              #{q_hit},#{q_secret},#{q_pw},#{q_re_ref},#{q_re_lev},#{q_re_seq})
+    </insert>
+    
+    <select id="readMember" resultType="com.luvit.domain.BoardQnaVO">
+      select 
+      *
+      from 
+      qna
+      where userid =#{userid}
+    </select>	
+  
+  </mapper>

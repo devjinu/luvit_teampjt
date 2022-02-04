@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지. #{} 구문은 get()/set()으로 사용돼. https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 
+	여기 읽어보면 문법이 나와있어. -->
+
+<mapper namespace="com.luvit.mapper.FridgeMapper">
+
+	<select id="grainList" resultType="com.luvit.domain.FridgeVO">
+    
+    	select
+    		*
+    	from fridge
+    	    
+    </select>
+
+	<select id="searchFridge" resultType="String">
+		select ${value}
+		from fridge
+	</select>
+	
+	<select id="choiceFridge" resultType="String">
+	select ${vlaue}
+	from fridge
+	where 
+	</select>
+	
+	<select id="searchRecipe" resultType="com.luvit.domain.RecipeVO">
+	
+	select
+	 *
+	from
+	 recipe
+	where
+	 <foreach item="r_ing" collection="list" separator="and">
+       r_ing like concat('%',#{r_ing},'%')
+  </foreach>
+
+	</select>
+	
+	<!-- 게시물 총 갯수 + 검색 적용-->
+  	<select id="searchCount" parameterType ="hashMap" resultType="int">
+  		select count(r_bno) from recipe 
+  		<if test='searchType.equals("title")'>
+			WHERE r_subject LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("content")'>
+			WHERE r_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("title_content")'>
+			WHERE r_subject LIKE concat('%', #{keyword}, '%') 
+			or r_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("writer")'>
+			WHERE r_nickname LIKE concat('%', #{keyword}, '%')
+		</if>
+ 		
+  		
+  	</select>
+	
+	
+		<!-- 레시피 목록 + 페이징 + 검색 -->
+	<select id="listPageSearch" parameterType="hashMap" resultType="com.luvit.domain.RecipeVO">
+		select * 
+		from recipe 
+		<if test='searchType.equals("title")'>
+			WHERE r_subject LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("content")'>
+			WHERE r_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("title_content")'>
+			WHERE r_subject LIKE concat('%', #{keyword}, '%') 
+			or r_content LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test='searchType.equals("writer")'>
+			WHERE r_nickname LIKE concat('%', #{keyword}, '%')
+		</if>
+		order by r_bno desc 
+			limit #{displayPost}, #{postNum}
+	</select>
+	
+
+</mapper>
+  

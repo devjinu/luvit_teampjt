@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지.
+        #{} 구문은 get()/set()으로 사용돼.
+        https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 여기 읽어보면 문법이 나와있어. -->
+
+<mapper namespace="com.luvit.mapper.UserMapper">
+
+
+    <select id="getTime" resultType="string">
+        select now()
+    </select>
+
+    <insert id="insertMember" useGeneratedKeys="true"
+            keyProperty="user_num">
+        insert into user (id, pw, email, reg_date, point, email_hash, nickname, grade)
+        values (#{id}, #{pw}, #{email}, now(), 0, email_hash, #{nickname}, 0)
+    </insert>
+
+    <select id="readMember" resultType="userVO">
+        select *
+        from user
+        where id = #{id}
+    </select>
+
+    <select id="readMemberWithIDPW" resultType="userVO">
+        select *
+        from user
+        where id = #{id}
+          and pw = #{pw}
+    </select>
+
+    <update id="tempPw">
+        update user
+        set pw = #{pw}
+        where id = #{id}
+    </update>
+
+    <update id="updateMember">
+        <if test="email == null">
+            update user
+            set nickname = #{nickname}
+            where id = #{id}
+        </if>
+        <if test="nickname == null">
+            update user
+            set email = #{email},
+            email hash = #{email_hash}
+            where id = #{id}
+        </if>
+        update user
+        set email = #{email},
+        nickname = #{nickname},
+        email_hash = #{email_hash}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMember">
+        delete
+        FROM user
+        where id = #{id}
+
+    </delete>
+
+    <select id="getMemberList" resultType="userVO" useCache="true">
+        select *
+        from user
+    </select>
+
+    <insert id="snsInsertUser" useGeneratedKeys="true">
+        insert into user(id, pw, email, reg_date, point, email_hash, nickname, grade)
+        values (#{id}, #{pw}, #{email}, now(), 0, #{email_hash}, 1, #{nickname}, null)
+    </insert>
+
+    <select id="nickCheck" resultType="int">
+        select count(nickname)
+        from user
+        where nickname = #{nickname}
+    </select>
+
+    <select id="emailCheck" resultType="int">
+        select count(email)
+        from user
+        where email = #{email}
+    </select>
+
+    <select id="idCheck" resultType="int">
+        select count(id)
+        from user
+        where lower(id) = lower(#{id})
+    </select>
+
+    <update id="changePw">
+        update user
+        set pw=#{pw}
+        where id = #{id}
+
+    </update>
+
+    <select id="findmyid" resultType="userVO">
+        select *
+        from user
+        where email = #{email}
+    </select>
+
+    <!-- 관리자 페이지에서 필요한 동작 -->
+
+    <!-- user_num으로 회원정보 삭제 -->
+    <delete id="deleteUser">
+		delete from user where user_num=#{user_num}
+	</delete>
+
+    <!-- 유저 총 명수 + 검색 적용-->
+    <select id="searchCount" parameterType="hashMap" resultType="int">
+        select count(id) from user
+        <if test='searchType.equals("id")'>
+            WHERE id LIKE concat('%', #{keyword}, '%')
+        </if>
+        <if test='searchType.equals("nickname")'>
+            WHERE nickname LIKE concat('%', #{keyword}, '%')
+        </if>
+        <if test='searchType.equals("email")'>
+            WHERE email LIKE concat('%', #{keyword}, '%')
+        </if>
+    </select>
+
+    <!-- 유저리스트 + 페이징 + 검색 -->
+    <select id="listPageSearch" parameterType="hashMap" resultType="userVO">
+        select *
+        from user
+        <if test='searchType.equals("id")'>
+            WHERE id LIKE concat('%', #{keyword}, '%')
+        </if>
+        <if test='searchType.equals("nickname")'>
+            WHERE nickname LIKE concat('%', #{keyword}, '%')
+        </if>
+        <if test='searchType.equals("email")'>
+            WHERE email LIKE concat('%', #{keyword}, '%')
+        </if>
+        order by user_num desc
+        limit #{displayPost}, #{postNum}
+    </select>
+
+    <cache
+            eviction="LRU"
+            flushInterval="60000"
+            size="128"
+            readOnly="true"/>
+
+</mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

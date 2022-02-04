@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지.
+  		#{} 구문은 get()/set()으로 사용돼. 
+  		https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 여기 읽어보면 문법이 나와있어. -->
+  
+  <mapper namespace="com.luvit.mapper.CartMapper">
+  
+	<!-- 카트 담기 -->
+	<insert id="addCart">
+	insert into cart(c_ono,c_pno,c_id,c_amount,c_date)
+	values(#{c_ono},#{c_pno},#{c_id},#{c_amount},now())
+	</insert>
+	
+	
+	<!-- 카트 목록 -->
+  	<select id="cartList" resultType="com.luvit.domain.CartVO">
+  	select
+      c.c_ono, c.c_id, c.c_pno, c.c_amount, c.c_date,
+     s.s_product as c_product, s.s_price as c_price, s.s_thumbnail as c_thumbnail, s.s_option as c_option, (s_price*c_amount) sumMoney
+   	from cart c
+   	inner join store s
+   		on c.c_pno = s.s_pno 
+   	 where c.c_id = #{c_id}
+         
+  	</select>
+  	
+  	<!-- 카트 삭제 -->
+ 	<delete id="cartDelete">
+ 	delete
+ 	from cart
+ 	where c_ono = #{c_ono} and c_id = #{c_id}
+ 	</delete>
+  
+  
+  
+  	<!-- 주문 정보 -->
+	<insert id="orderInfo">
+	 insert into order_list(o_ono,o_id, o_tel,o_receiver,o_receiver_tel,o_sum,
+ 	o_post_num,o_addr1,o_addr2,o_memo,o_pay,o_payer,o_account_num,o_date)
+	 values(#{o_ono},#{o_id}, #{o_tel}, #{o_receiver}, #{o_receiver_tel},#{o_sum},
+     #{o_post_num}, #{o_addr1}, #{o_addr2}, #{o_memo}, #{o_pay},#{o_payer},#{o_account_num},now())
+	</insert>
+   
+   
+	<!-- 주문 상세 정보 --> 
+	<insert id="orderInfo_Details">
+	 insert into order_detail(o_d_ono, o_d_id, o_d_pno,o_d_amount)
+     select #{o_d_ono}, c_id, c_pno, c_amount
+         from cart   
+	</insert> 
+
+
+	<!-- 카트 비우기 -->
+	<delete id="cartAllDelete">
+	delete from cart
+	where c_id = #{c_id}
+	</delete>
+
+	
+	<!-- 주문 목록 -->
+	<select id="orderList" resultType ="com.luvit.domain.Order_listVO">
+	select
+	o_ono,o_id,o_receiver,o_post_num,o_addr1,o_addr2,
+	o_tel,o_sum,o_memo,o_payer,o_delivery,o_receiver_tel,o_date,o_invoice
+	from order_list
+		where o_id = #{o_id}	
+	</select>
+	
+	<!-- 관리자 주문 목록 -->
+	<select id="adminOrderList" resultType ="com.luvit.domain.Order_listVO">
+	select
+	o_ono,o_id,o_receiver,o_post_num,o_addr1,o_addr2,
+	o_tel,o_sum,o_memo,o_payer,o_delivery,o_receiver_tel,o_date,o_invoice
+	from order_list
+	</select>
+	
+	
+	<!-- 특정 주문 목록 -->
+	<select id="orderView" resultType="com.luvit.domain.PayerVO">
+	 select
+ 	 	   o.o_ono as ono, o.o_id as id, o.o_receiver as receiver, o.o_post_num as post_num, o.o_addr1 as addr1, o.o_addr2 as addr2,
+ 	 	   o.o_receiver_tel as receiver_tel, o.o_sum as sum, o.o_date as date, o.o_memo as memo, o.o_delivery as delivery,
+   		  d.o_d_ono as ono, d.o_d_pno as pno, d.o_d_amount as amount,
+   		  s.s_pno as pno, s.s_thumbnail as thumbnail, s.s_price as price, s.s_product as product
+	 from order_list o
+     	    inner join order_detail d
+               on o.o_ono = d.o_d_ono
+     	    inner join store s
+             on d.o_d_pno = s.s_pno
+     where o.o_ono = #{o_ono}
+	</select>
+	
+	
+	<!-- 주문 조회 -->
+  	<select id="order" resultType="com.luvit.domain.Order_listVO">
+  	select 
+  	o_ono,o_id,o_receiver,o_post_num,o_addr1,o_addr2,
+	o_tel,o_sum,o_memo,o_payer,o_delivery,o_receiver_tel,o_date,o_invoice
+  	from order_list
+  	where o_ono = #{o_ono}
+  	</select>
+  	
+  	
+  		<!-- 주문 정보 수정 -->
+  	<update id="orderModify">
+  	update order_list
+  	set
+  	o_ono = #{o_ono},
+  	o_receiver = #{o_receiver},
+  	o_post_num = #{o_post_num},
+  	o_addr1 = #{o_addr1},
+  	o_addr2 = #{o_addr2},
+  	o_receiver_tel = #{o_receiver_tel},
+  	o_delivery = #{o_delivery},
+  	o_memo = #{o_memo},
+  	o_invoice = #{o_invoice}
+  	where o_ono = #{o_ono}
+  	</update>
+	
+
+  </mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 조건을 처리하기 위해 ? 대신 #{}를 사용하게 됐지. #{} 구문은 get()/set()으로 사용돼. https://mybatis.org/mybatis-3/ko/sqlmap-xml.html 
+	여기 읽어보면 문법이 나와있어. -->
+
+<mapper namespace="com.luvit.mapper.Tip_commentMapper">
+
+	<!-- @@@@@@@@@@@@@@@@@@@ 팁댓글 @@@@@@@@@@@@@@@@@@@@ -->
+
+	<select id="getTime" resultType="string">
+		select now()
+	</select>
+
+	<select id="cntReply" resultType="int">
+        select
+            COUNT(*)
+        from tip_comment
+    </select>
+    
+    <select id="listReply" resultType="com.luvit.domain.Tip_commentVO">
+    
+    	select
+    		*
+    	from tip_comment
+    	
+    	where t_c_bno = #{t_c_bno}
+    	
+    	order by t_c_cno desc
+    
+    </select>
+
+
+	
+	<insert id="inReply" parameterType="com.luvit.domain.Tip_commentVO">
+
+		insert into tip_comment(t_c_cno, t_c_bno, t_c_content, t_c_nickname, t_c_rating)
+
+		values (#{t_c_cno}, #{t_c_bno}, #{t_c_content}, #{t_c_nickname}, #{t_c_rating})
+		
+	</insert>
+
+	
+
+	<update id="upReply" parameterType="com.luvit.domain.Tip_commentVO">
+
+		update tip_comment set
+
+			t_c_content = #{t_c_content} 
+
+		where
+
+			t_c_cno = #{t_c_cno}
+
+	</update>
+
+	
+
+	<delete id="delReply" parameterType="int">
+
+		delete from tip_comment
+
+		where
+
+			t_c_cno = #{t_c_cno}
+
+	</delete>
+	
+	<!-- 평균 평점 -->
+	<update id="avgRating" parameterType="int">
+	
+	update tip set 
+	t_avg = (select avg(t_c_rating) from tip_comment where t_c_bno = #{t_c_bno})
+	where t_bno = #{t_c_bno};
+	
+	</update>
+	<!-- 평균 평점 -->
+	
+	<!-- @@@@@@@@@@@@@@@@@@@ 레시피 댓글 @@@@@@@@@@@@@@@@@@@@ -->
+	
+	<select id="rcntReply" resultType="int">
+        select
+            COUNT(*)
+        from recipe_comment
+    </select>
+    
+    <select id="rlistReply" resultType="com.luvit.domain.Recipe_commentVO">
+    
+    	select
+    		*
+    	from recipe_comment
+    	
+    	where r_c_bno = #{r_c_bno}
+    	
+    	order by r_c_cno desc
+    
+    </select>
+
+
+	
+	<insert id="rinReply" parameterType="com.luvit.domain.Recipe_commentVO">
+
+		insert into recipe_comment(r_c_cno, r_c_bno, r_c_content, r_c_nickname, r_c_rating)
+
+		values (#{r_c_cno}, #{r_c_bno}, #{r_c_content}, #{r_c_nickname}, #{r_c_rating})
+		
+	</insert>
+
+	
+
+	<update id="rupReply" parameterType="com.luvit.domain.Recipe_commentVO">
+
+		update recipe_comment set
+
+			r_c_content = #{r_c_content}, r_c_rating = #{r_c_rating}
+
+		where
+
+			r_c_cno = #{r_c_cno}
+
+	</update>
+
+	
+
+	<delete id="rdelReply" parameterType="int">
+
+		delete from recipe_comment
+
+		where
+
+			r_c_cno = #{r_c_cno}
+
+	</delete>
+
+
+</mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

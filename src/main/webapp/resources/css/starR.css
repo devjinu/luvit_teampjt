@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+/* .starR{ */
+/*   background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0; */
+/*   background-size: auto 100%; */
+/*   width: 30px; */
+/*   height: 30px; */
+/*   display: inline-block; */
+/*   text-indent: -9999px; */
+/*   cursor: pointer; */
+/* } */
+/* .starR.on{background-position:0 0;} */
+
+.blind {
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  border: none;
+  clip: rect(0, 0, 0, 0);
+}
+
+.startRadio {
+  display: inline-block;
+  overflow: hidden;
+  height: 20px;
+}
+.startRadio:after {
+  content: "";
+  display: block;
+  position: relative;
+  z-index: 10;
+  height: 20px;
+    background: url('/resources/img/tip_img/starline.png'); background-repeat:repeat-x 0 0;
+  background-size: contain;
+  pointer-events: none;
+}
+.startRadio__box {		 
+  position: relative;
+  z-index: 1;
+  float: left;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  line-height: 40px;
+}
+.startRadio__box input {
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+}
+.startRadio__box input:checked + .startRadio__img {
+  background-color: #bf956b;
+}
+.startRadio__img {
+  display: block;
+  position: absolute;
+  right: 0;
+  width: 500px;
+  height: 40px;
+  pointer-events: none;
+}
+
+

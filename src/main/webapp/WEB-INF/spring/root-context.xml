@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+
+
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <!-- Root Context: defines shared resources visible to all other web components -->
+    <!-- DriverManagerDataSource : DataSource 정보를 가지고 있는 객체 DB연결시 필요한 접속 정보를
+        가지고 있는 객체 -->
+
+
+    <!-- DataSource 객체 -->
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName"
+                  value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+        <property name="url"
+                  value="jdbc:log4jdbc:mysql://localhost:3306/luvit?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+        <!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"/> -->
+        <!-- <property name="url" value="jdbc:mysql://localhost:3306/springdb?useSSL=false"/> -->
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+    </bean>
+
+    <!-- DataSource 객체 -->
+
+    <!-- SqlSessionFactory 객체 -->
+    <!-- mybatis와 스프링 연동작을 하기위한 SqlsessionFactory == DB연결 및 SQL의 실행을 대한객체 -->
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+
+        <!-- mybatis-config.xml이 스프링 시작될때 같이 실행되도록 설정하기 -->
+        <property name="configLocation"
+                  value="classpath:/mybatis-config.xml"/>
+
+        <!-- XML Mapper 인식하게 설정 -->
+        <property name="mapperLocations"
+                  value="classpath:mappers/**/*Mapper.xml"/>
+    </bean>
+
+    <!-- SqlSessionFactory 객체 -->
+
+
+    <!-- SqlSessionTemplate 객체(SqlSession을 구현함) -->
+    <!-- SQLSessionTemplate설정하기 DAO인터페이스를 만들었기때문에 Mybatis에서 DAO인터페이스를 구현하기위해서
+        필요한작업 -->
+
+    <bean id="sqlSession"
+          class="org.mybatis.spring.SqlSessionTemplate"
+          destroy-method="clearCache">
+
+        <constructor-arg name="sqlSessionFactory"
+                         ref="sqlSessionFactory"/>
+    </bean>
+    <!-- google Class Bean설정 추가 -->
+    <!-- 클라이언트ID와 보안비밀 세팅 -->
+    <bean id="googleConnectionFactory"
+          class="org.springframework.social.google.connect.GoogleConnectionFactory">
+        <constructor-arg value="405908712539-blqg4kjvf1ld9nqvvcctcim0aatn3vii.apps.googleusercontent.com"/>
+        <constructor-arg value="Ro-DOwndU7jQ5VkNI1IzYhNT"/>
+    </bean>
+
+    <!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+    <bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+        <property name="scope" value="https://www.googleapis.com/auth/plus.login"/>
+        <property name="redirectUri" value="http://rustywhite404.cafe24.com/google/callback"/>
+    </bean>
+    <!-- google Class Bean설정 추가 -->
+    <!-- SqlSessionTemplate 객체(SqlSession을 구현함) -->
+
+    <!-- DAO 관련 패키지(persistence) 추가 -->
+    <context:component-scan base-package="com.luvit.persistence"/>
+    <!-- 서비스 관련 패키지(service) 추가 -->
+    <context:component-scan base-package="com.luvit.service"/>
+
+    <context:component-scan base-package="com.luvit.domain"/>
+    <context:component-scan base-package="com.luvit.controller"/>
+    <context:component-scan base-package="com.luvit.snslogin"/>
+    <!-- 	<context:component-scan	base-package="com.luvit.utils" /> -->
+
+
+</beans>
